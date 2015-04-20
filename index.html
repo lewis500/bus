@@ -1,0 +1,15 @@
+<html>
+<head>
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+<script src='dist/bundle.js'></script>
+
+<body ng-app='mainApp' ng-controller="mainCtrl as main">
+	<button ng-click="main.tick()">Tick</button>
+	<button ng-click="main.play()">Play</button>
+	<button ng-click="main.stop()">Pause</button>
+
+  <div line-chart data='main.minutes'></div>
+</body>
+
+</html>
