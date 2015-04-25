@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getNextStop"
+			],
+			[
+				"board",
+				"board_prom"
+			],
+			[
+				"defer",
+				"deferred"
+			],
+			[
+				"sample",
+				"sample_size"
+			],
+			[
+				"num",
+				"num_minutes"
+			],
+			[
+				"rece",
+				"receiveArray"
+			],
+			[
+				"car",
+				"carOrArray"
+			],
+			[
+				"queue",
+				"queue_length"
+			],
+			[
 				"sched_",
 				"sched_pen"
 			],
@@ -134,10 +166,6 @@
 			[
 				"time",
 				"timeToBestTick"
-			],
-			[
-				"get",
-				"getDistance"
 			],
 			[
 				"data",
@@ -304,10 +332,6 @@
 				"last"
 			],
 			[
-				"num",
-				"numPatches"
-			],
-			[
 				"del",
 				"delLeft"
 			],
@@ -318,10 +342,6 @@
 			[
 				"eva",
 				"evalToll"
-			],
-			[
-				"queue",
-				"queueTime"
 			],
 			[
 				"selec",
@@ -532,7 +552,7 @@
 				"Snippet: function(d, i) { return d; }"
 			]
 		],
-		"width": 812.0
+		"width": 440.0
 	},
 	"console":
 	{
@@ -553,10 +573,24 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/lewis/Research/noDistance"
+		"/Users/lewis/Research/noDistance",
+		"/Users/lewis/Research/noDistance/coffee"
 	],
 	"file_history":
 	[
+		"/Users/lewis/Research/noDistance/index.html",
+		"/Users/lewis/Research/noDistance/coffee/models/pax.coffee",
+		"/Users/lewis/Research/noDistance/coffee/mainCtrl.coffee",
+		"/Users/lewis/Research/noDistance/todo",
+		"/Users/lewis/Research/noDistance/coffee/models/bus.coffee",
+		"/Users/lewis/Research/noDistance/coffee/models/car.coffee",
+		"/Users/lewis/Research/noDistance/coffee/lineChart.coffee",
+		"/Users/lewis/Research/noDistance/coffee/World.coffee",
+		"/Users/lewis/Research/noDistance/coffee/lineCtrl.coffee",
+		"/Users/lewis/Research/noDistance/.gitignore",
+		"/Users/lewis/Research/noDistance/coffee/models/minute.coffee",
+		"/Users/lewis/Research/noDistance/coffee/helpers.coffee",
+		"/Users/lewis/Research/noDistance/coffee/app.coffee",
 		"/Users/lewis/Research/movsim-js/js/simulation/roadLane.js",
 		"/Users/lewis/Documents/bneck/.gitignore",
 		"/Users/lewis/Documents/bneck2/coffee/helpers.coffee",
@@ -671,24 +705,11 @@
 		"/Users/lewis/Documents/nerdwallet/js/jetpack.js",
 		"/Users/lewis/Documents/nerdwallet/components/basic/plotDer.js",
 		"/Users/lewis/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/Users/lewis/Documents/nerdwallet/bower_components/mathjs/lib/expression/node/IndexNode.js",
-		"/Users/lewis/Documents/nerdwallet/bower_components/mathjs/docs/getting_started.md",
-		"/Users/lewis/Documents/nerdwallet/bower_components/angular-material/modules/closure/tabs/tabs-arrow.svg",
-		"/Users/lewis/Documents/nerdwallet/bower_components/angular-material/modules/closure/dialog/dialog-default-theme.css",
-		"/Users/lewis/Documents/nerdwallet/bower_components/angular-material/modules/closure/toast/toast-default-theme.css",
-		"/Users/lewis/Documents/nerdwallet/bower_components/mathjs/lib/expression/node/AssignmentNode.js",
-		"/Users/lewis/Documents/nerdwallet/bower_components/angular-material/modules/closure/select/select-default-theme.css",
-		"/Users/lewis/Documents/nerdwallet/components/outcome/asset.html",
-		"/Users/lewis/Documents/nerdwallet/bower_components/angular-material/demos/icon/demoLoadSvgIconsFromUrl/img/icons/addShoppingCart.svg",
-		"/Users/lewis/Documents/nerdwallet/bower_components/angular-material/modules/css/angular-material-layout.css",
-		"/Users/lewis/Documents/nerdwallet/bower_components/mathjs/docs/reference/functions/forEach.md",
-		"/Users/lewis/Documents/nerdwallet/bower_components/mathjs/examples/browser/webworkers/webworkers.html",
-		"/Users/lewis/Documents/nerdwallet/bower_components/angular-material/modules/closure/toolbar/toolbar.css",
-		"/Users/lewis/Documents/nerdwallet/bower_components/angular/README.md"
+		"/Users/lewis/Documents/nerdwallet/bower_components/mathjs/lib/expression/node/IndexNode.js"
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -707,6 +728,52 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"road",
+			"next_stop",
+			"promises",
+			"pax_boarding",
+			"pax_alighting",
+			"this",
+			"World",
+			"choose",
+			"100",
+			"10",
+			"exits",
+			"arivals",
+			"cum_arrivals",
+			"serve",
+			"wish",
+			"exit",
+			"serve",
+			"exit_time",
+			"wish_time",
+			"sample",
+			"car.choose",
+			"choose",
+			"receive",
+			"rece",
+			"receive",
+			"recei",
+			"rece",
+			"receive",
+			"cum",
+			"num_cars",
+			"findvel",
+			"@wish_time",
+			"wish_time",
+			"wishtime",
+			"wish",
+			"foreach",
+			"receive_queue",
+			"queue",
+			"receiveQueue",
+			"arr",
+			"car",
+			"typeof",
+			"exit",
+			"queue_length",
+			"scale",
+			"km",
 			"getleader",
 			"acceleration",
 			"next",
@@ -788,53 +855,7 @@
 			"Uni",
 			"car",
 			"new car",
-			"uni",
-			"vel",
-			"km",
-			"interval",
-			"world.",
-			"place",
-			"foreach",
-			".prev",
-			"stop",
-			"resize",
-			"left",
-			"height",
-			"xaxis",
-			".cal",
-			"cum_",
-			"arrival",
-			"cum_",
-			"cum_arr",
-			".mar",
-			"range",
-			"domain",
-			"time",
-			"cars",
-			"Minute",
-			"asdf",
-			"'Car'",
-			"newcar",
-			"car",
-			"minutes",
-			"cars",
-			"numcars",
-			"num_cars",
-			"num",
-			"arr_",
-			"yaxis",
-			"shift",
-			"#",
-			"trans",
-			"@mar",
-			"modules",
-			"world",
-			"tick",
-			"scope",
-			"world",
-			"main",
-			"black",
-			"'e"
+			"uni"
 		],
 		"highlight": false,
 		"in_selection": false,
@@ -842,6 +863,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"World.wish_time",
 			"World",
 			"24px",
 			"tt",
@@ -968,8 +990,7 @@
 			"delta",
 			"A",
 			")",
-			"(",
-			"sublime_text"
+			"("
 		],
 		"reverse": false,
 		"show_context": true,
@@ -1032,7 +1053,7 @@
 	"project": "noDistance.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1042,52 +1063,68 @@
 		"selected_items":
 		[
 			[
-				"road",
-				"js/simulation/roadLane.js"
+				"pax",
+				"coffee/models/pax.coffee"
+			],
+			[
+				"todo",
+				"todo"
 			],
 			[
 				"ind",
-				"bneck2/index.html"
+				"index.html"
+			],
+			[
+				"car.",
+				"coffee/models/car.coffee"
+			],
+			[
+				"world",
+				"coffee/World.coffee"
+			],
+			[
+				"main",
+				"coffee/mainCtrl.coffee"
+			],
+			[
+				"car.co",
+				"coffee/models/car.coffee"
+			],
+			[
+				"car",
+				"coffee/models/car.coffee"
+			],
+			[
+				"min",
+				"coffee/models/minute.coffee"
+			],
+			[
+				"line",
+				"coffee/lineChart.coffee"
+			],
+			[
+				"car.c",
+				"coffee/models/car.coffee"
+			],
+			[
+				"mainc",
+				"coffee/mainCtrl.coffee"
+			],
+			[
+				"minu",
+				"coffee/models/minute.coffee"
+			],
+			[
+				"road",
+				"js/simulation/roadLane.js"
 			],
 			[
 				"bundle",
 				"bneck2/dist/bundle.js"
 			],
 			[
-				"mainc",
-				"bneck2/coffee/mainCtrl.coffee"
-			],
-			[
-				"min",
-				"bneck2/coffee/models/minute.coffee"
-			],
-			[
-				"car",
-				"bneck2/coffee/models/car.coffee"
-			],
-			[
-				"world",
-				"bneck2/coffee/World.coffee"
-			],
-			[
-				"car.co",
-				"bneck2/coffee/models/car.coffee"
-			],
-			[
 				"main.css",
 				"bneck2/styles/main.css"
-			],
-			[
-				"minu",
-				"bneck2/coffee/models/minute.coffee"
-			],
-			[
-				"car.",
-				"bneck2/coffee/models/car.coffee"
-			],
-			[
-				"car.c",
-				"bneck2/coffee/models/car.coffee"
 			],
 			[
 				"minutes",
@@ -1098,16 +1135,8 @@
 				"bneck2/coffee/World.coffee"
 			],
 			[
-				"main",
-				"bneck2/coffee/mainCtrl.coffee"
-			],
-			[
 				"car.coff",
 				"bneck2/coffee/models/car.coffee"
-			],
-			[
-				"line",
-				"bneck2/coffee/lineChart.coffee"
 			],
 			[
 				"minute.c",
@@ -1312,10 +1341,6 @@
 			[
 				"font",
 				"styles/fonts/HCo_fonts.css"
-			],
-			[
-				"todo",
-				"todo"
 			],
 			[
 				"tootlip",
@@ -1548,10 +1573,6 @@
 			[
 				"plot.",
 				"components/basic/plot.html"
-			],
-			[
-				"inpu",
-				"components/inputs/inputs.html"
 			]
 		],
 		"width": 0.0
@@ -1594,7 +1615,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 251.0,
+	"side_bar_width": 209.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

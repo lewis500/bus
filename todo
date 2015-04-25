@@ -1,10 +1,20 @@
-remove distance
+VIS
+make everything size relative to road width
 
-add queuelength to minute, don't clear it until cars have chosen
 
-+add rate on world
 
-todo
+ADD SCHEDULE
+have the buses start out at a certain stop
+keep track of how many stops theyve been to
 
-CSS files
-world service
+
+
+styles for the buses
+
+draw the road
+draw the stops
+draw the buses
+draw the passengers
+
+
+down the road make it so that when a passenger arrrives and there's a bus he gets in line for that bus

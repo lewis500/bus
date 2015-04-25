@@ -5,26 +5,23 @@ body {
     font-size: 15px;
 }
 
-.axis path, .axis line {
+
+div[vis-der]{
+    width: 75%;
+}
+
+rect.bus-rect{
+    fill: pink;
+    opacity: .8;
+}
+
+rect.stop-rect{
+    fill: steel-blue;
+    opacity: .8;
+}
+
+circle.road{
     fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-}
-
-path.arr-line , path.exit-line{
-    fill: none;
-    stroke-width: 1.5px;
-}
-
-path.arr-line{
-    stroke: red;
-}
-
-path.exit-line{
-    stroke: blue;
-}
-
-
-div[line-chart]{
-    width: 50%;
+    stroke: #222;
+    stroke-width: 20px;
 }

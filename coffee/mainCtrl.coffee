@@ -1,44 +1,68 @@
 'use strict'
+# libraries
 _ = require('lodash')
-World = require './World.coffee'
-Car = require './models/car.coffee'
-Minute = require './models/minute.coffee'
 d3 = require 'd3'
+#services
+Settings = require './services/settings'
+World = require './services/world'
+
+# classes/models
+Stop = require './models/stop'
+Pax = require './models/pax'
+Bus = require './models/bus'
+
 
 class mainCtrl
 	constructor: ($scope)->
 		@scope = $scope
+		@paused = false
+		@adding = false
 
-		@minutes = World.minutes = [0...World.num_minutes]
-			.map (time)=> newMinute = new Minute(time)
+		@thro = _.throttle(()=>
+			@scope.$evalAsync()
+		, 50)
 
-		@cars = [0...World.num_cars].map (n)=>
-				arr_time = _.sample([0..120],1)[0]
-				newCar = new Car(n, arr_time)
-				newCar.place()
-				return newCar
+		# create stops
+		World.stops = [1..Settings.num_stops].map (n)->
+			position = Settings.road_length * n / Settings.num_stops
+			newStop = new Stop(n, position)
+		# create buses
+		World.buses = [0...Settings.num_buses].map (n)-> 
+			stop = World.stops[n]
+			newBus = new Bus(n, stop)
 
-		@chosen = 0
+	choose_destination: (stop)->
+		_.sample(_.without(World.stops, stop), 1)[0]
 
-	get_sample:->
-		@chosen = (@chosen + 1)%(World.num_cars)
-		@cars[@chosen]
+	tick: (dt)->
+		World.buses.forEach (bus)-> bus.tick(dt)
+		@thro()
 
-	tick: ->
-		# physics stage
-		World.minutes.forEach (minute)->	minute.serve()
-		# choice stage
-		[0...World.sample_size].forEach (car) => @get_sample().choose()
-		@cars.forEach (car) => car.place()
-		@scope.$evalAsync()
+	add_pax: ->
+		@adding = true
+		d3.timer(=>
+			console.log 'adding'
+			World.stops.forEach (stop) =>
+				destination = @choose_destination(stop)
+				new_pax = new Pax(destination, stop)
+				stop.receive_pax(new_pax)
+			if not @paused then @add_pax() else @adding = false
+			true
+		, Settings.add_time())
 
 	play: ->
+		# bus stuff
 		@stop()
-		@runner = setInterval(()=>
-			 @tick()
-		, World.interval)
-		
-	stop: -> clearInterval @runner
+		if not @adding then @add_pax()
+		@paused = false
+		last = 0
+		d3.timer((elapsed)=> 
+			dt = elapsed - last
+			last = elapsed
+			@tick(dt)
+			@paused)
 
+	stop: -> 
+		@paused = true
 
 module.exports = mainCtrl

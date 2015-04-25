@@ -2,9 +2,8 @@
 
 angular = require 'angular'
 mainCtrl = require './mainCtrl.coffee'
-lineChart = require './lineChart.coffee'
+vis = require './directives/vis.coffee'
 
 app = angular.module('mainApp', [])
 	.controller 'mainCtrl', mainCtrl
-	.controller 'lineChartCtrl', lineChart.controller
-	.directive 'lineChart', lineChart.directive
+	.directive 'visDer', vis
