@@ -13,7 +13,7 @@ Bus = require './models/bus'
 
 
 class mainCtrl
-	constructor: ($scope)->
+	constructor: ($scope, WorldService)->
 		@scope = $scope
 		@paused = false
 		@adding = false
@@ -56,11 +56,11 @@ class mainCtrl
 		if not @adding then @add_pax()
 		@paused = false
 		last = 0
-		d3.timer((elapsed)=> 
+		d3.timer (elapsed)=> 
 			dt = elapsed - last
 			last = elapsed
 			@tick(dt)
-			@paused)
+			@paused
 
 	stop: -> 
 		@paused = true

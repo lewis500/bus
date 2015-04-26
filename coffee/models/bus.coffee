@@ -17,43 +17,31 @@ class Bus
 	@property 'next_stop', get: -> 
 		_.find(World.stops , (stop)=> stop.location > @location) ? World.stops[0]
 
-	@property 'blocked', get: ->
+	@property 'space', get: ->
 		[a,b] = [@next_bus.position, @position]
-		gap = if ((a-b) > 0) then (a-b) else (a+Settings.road_length - b)
-		gap < Settings.gap
+		if (a < b) then (a-b) else (a+Settings.road_length - b)
 
 	@property 'location', get: -> @position % Settings.road_length
 
 	release: ->
 		console.log 'release'
+		@position += .02
 		@stopped = false
-		@stop_queue = null
-		@alight_queue = null
-		@stop = null
 
 	halt: ->
 		@stopped = true
-		stop = @next_stop
-		cb = =>if @stop_queue.length > 0 then @stop_queue.shift()() else @release()
-
-		@stop_queue = []
-
-		@queue.filter (pax)=> pax.destination is stop
-			.forEach (pax)=> @stop_queue.push(pax.alight.bind(pax, this, cb))
-
-		stop.queue.forEach (pax) =>
-			@stop_queue.push(pax.board.bind(pax, this, cb))
-
-		setTimeout(=>cb())
+		@next_stop.halt(this)
 
 	tick: (dt)->
-		if not (@stopped or @blocked)
+		World.time += dt
+		if not (@stopped)
 			gap = @gap
-			if @gap <= dt * @velocity
+			move = (dt * @velocity)
+			if gap <= move
 				@halt()
 				@position += gap
 			else
-				@position+=dt * @velocity
+				@position += move
 
 	remove_pax: (pax)->	@queue.splice(@queue.indexOf(pax), 1)
 

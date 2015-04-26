@@ -1,5 +1,6 @@
 Settings = require '../services/settings'
 require '../helpers'
+World = require '../services/World'
 
 class Pax
 	constructor: (@destination, @stop)->
@@ -13,7 +14,7 @@ class Pax
 		@alight_timeout = null
 
 		@times = 
-			start: Date.now()
+			start: World.time
 			board: Infinity
 			alight: Infinity
 
@@ -22,22 +23,7 @@ class Pax
 	@property 'wait_time', get: -> @times.board - @times.start
 	@property 'total_time', get: -> @times.alight -@times.start
 
-	alight:(bus, cb) ->
-		console.log 'alighting'
-		d3.timer(=>
-			bus.remove_pax(this)
-			cb()
-			true
-		, Settings.alight_time())
-
-	board:(bus, cb) ->
-		console.log 'boarding'
-		@bus = bus
-		d3.timer( =>
-			@bus.add_pax(this)
-			@stop.remove_pax(this)
-			cb()
-			true
-		, Settings.board_time())
+	alight:() -> @times.alight = World.time
+	board: () -> @times.board = World.time
 
 module.exports = Pax
