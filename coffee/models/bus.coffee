@@ -1,4 +1,4 @@
-require '../helpers'
+timeout = require( '../helpers').timeout
 World = require '../services/world'
 Settings = require '../services/settings'
 _ = require 'lodash'
@@ -9,6 +9,7 @@ class Bus
 		@stopped = false
 		@position = @stop.location
 		@velocity = Settings.bus_velocity 
+		@halts = 0
 
 	@property 'gap', get: -> @next_stop.location - @location
 
@@ -18,22 +19,32 @@ class Bus
 		_.find(World.stops , (stop)=> stop.location > @location) ? World.stops[0]
 
 	@property 'space', get: ->
-		[a,b] = [@next_bus.position, @position]
-		if (a < b) then (a-b) else (a+Settings.road_length - b)
+		space = @next_bus.position - @position
+		diff = if (space > 0) then space else (space + Settings.road_length)
+		-Settings.space + diff
 
 	@property 'location', get: -> @position % Settings.road_length
 
+	@property 'not_ready', get: -> @halts > Settings.expected_halts
+
+	delay_draw:->
+		draw = Math.random()
+		if draw < .005
+			@stopped = true
+			timeout(=> 
+				@stopped=false
+			, 200)
+
 	release: ->
-		console.log 'release'
 		@position += .02
 		@stopped = false
 
 	halt: ->
+		@halts++
 		@stopped = true
 		@next_stop.halt(this)
 
 	tick: (dt)->
-		World.time += dt
 		if not (@stopped)
 			gap = @gap
 			move = (dt * @velocity)
@@ -41,7 +52,8 @@ class Bus
 				@halt()
 				@position += gap
 			else
-				@position += move
+				@position += Math.min(move, @space)
+			@delay_draw()
 
 	remove_pax: (pax)->	@queue.splice(@queue.indexOf(pax), 1)
 

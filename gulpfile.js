@@ -4,11 +4,19 @@ var source = require('vinyl-source-stream');
 var coffee = require('gulp-coffee');
 var gutil = require('gulp-util');
 var notify = require('gulp-notify');
+var coffeelint = require('gulp-coffeelint')
+
 
 var errorHandler = function(e) {
   gutil.log(e);
   this.emit('end');
 };
+
+gulp.task('lint', function(){
+  gulp.src('./coffee/**/*.coffee')
+    .pipe(coffeelint('coffeelint.json'))
+    .pipe(coffeelint.reporter())
+});
 
 gulp.task('build', function() {
   return browserify('./coffee/app.coffee', {

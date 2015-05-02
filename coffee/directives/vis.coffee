@@ -34,7 +34,7 @@ der = ()->
 					<g ng-repeat='stop in vm.stops' ng-attr-transform='{{vm.rotator(stop)}} translate(0, {{vm.radius - vm.road_width}})'>
 						<rect class='stop-rect' rx='2' ry='2' width='10' height='10' x='-5'></rect>
 						<g class='g-pax'>
-							<circle ng-repeat='pax in stop.queue' r='3' ng-attr-cy='{{-$index * 6}}' cx='-3'></circle>
+							<circle ng-repeat='pax in stop.boarding_pax' r='3' ng-attr-cy='{{-$index * 6}}' cx='-3'></circle>
 						</g>
 					</g>
 				</g>

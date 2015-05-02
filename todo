@@ -1,11 +1,19 @@
 SHORT TERM
-put all the logic in the stops
+redo the timeout
+create the route
 
+
+
+SHORT TERM
+put people on the bus
+make the bus bigger
+bus schedule
+
+MEDIUM TERM
 
 
 
 NAMING
-rename Stop to BusStop
 position vs absolute positoin
 space "space to next bus"
 
@@ -27,5 +35,3 @@ draw the stops
 draw the buses
 draw the passengers
 
-
-down the road make it so that when a passenger arrrives and there's a bus he gets in line for that bus
