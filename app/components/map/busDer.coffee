@@ -1,8 +1,8 @@
 template = '''
-	<g transform='translate(-4, -2)'>
-		<rect class='bus' rx='2' ry='2' width='16' height='8'></rect>
-		<g class='g-pax'>
-			<circle ng-repeat='pax in vm.queue track by pax.id' class='pax' r='1' shifter='{{vm.pax_pos($index)}}'></circle>
+	<g>
+		<rect class='bus' rx='2' ry='2' width='36px' height='16px' x='-8' y='-8'></rect>
+		<g class='g-pax' transform='translate(0,-3)'>
+			<circle ng-repeat='pax in vm.queue track by pax.id' class='pax' r='2' shifter='{{vm.pax_pos($index)}}'></circle>
 		</g>
 	</g>
 '''
@@ -21,9 +21,9 @@ der = ()->
 			@queue = @data.queue
 			@pax_pos = (i)->
 				row = Math.floor i / 2
-				col = Math.floor i % 2
-				x = row * 2
-				y = col * 3
+				col = i % 2
+				x = row * 4.5
+				y = col * 6
 				[x,y]
 
 

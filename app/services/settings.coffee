@@ -9,8 +9,8 @@ class Settings
 	scale: 1
 	time: 0
 	bus_velocity: .01
-	_boarding: 150
-	_alighting: 150
+	_boarding: 400
+	_alighting: 400
 	_add_time: 1000
 	@property 'board_time', get: ->@scale * @_boarding
 	@property 'alight_time', get: -> @scale * @_alighting

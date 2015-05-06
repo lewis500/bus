@@ -39,7 +39,7 @@ der = ()->
 
 				circles
 					.transition('place')
-					.duration 80
+					.duration 150
 					.ease 'cubic'
 					.attr 'transform', rotator
 					.attr 'cy', translator
@@ -51,11 +51,11 @@ der = ()->
 					.attr 'transform', rotator
 					.attr 'cy', translator
 					.transition('grow')
-					.duration 50
+					.duration 100
 					.ease 'cubic-out'
 					.attr 'r' , 2.2
 
-				circles.exit().remove()
+				circles.exit().transition().duration(150).attr('r', 0).remove()
 
 			scope.$watch 'vm.queue.length', update
 
