@@ -1,0 +1,95 @@
+@import "../bower_components/material-color/material-color";
+
+@font-face {
+	font-family: AmLight;
+	src: url("font/AmbassadorPlusSans-Light.otf") format("opentype");
+}
+@font-face {
+	font-family: AmThin;
+	src: url("font/AmbassadorPlusSans-Thin.otf") format("opentype");
+}
+
+body {
+    font-family:'PT Sans', sans-serif;
+    padding-bottom: 150px;
+    padding-top: 5px;
+    font-size: 15px;
+}
+
+h1,h2,h3,h4{
+    font-family: AmLight;
+}
+
+#content{
+	width: 90%;
+    margin-top: 70px;
+    margin-left: 40px;
+}
+
+#toolbar{
+    width: 100%;
+    position: fixed;
+    height: 50px;
+    background-color: #4EA198;
+}
+
+#left p{
+    color: @clr-grey-600;
+}
+
+#why p{
+    color: white;
+    margin: 0px;
+    margin-left: 15px;
+}
+
+text.bus-icon{
+    font-family: 'FontAwesome';
+    font-size: .8em;
+    fill: @clr-grey-600;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+line, path{
+	pointer-events: none;
+}
+
+path.road{
+    stroke-width: 45px;
+    stroke: #514A53;
+    fill: none;
+}
+
+path.stripe{
+    stroke: @clr-yellow-300;
+    opacity: .4;
+    fill: none;
+    stroke-width: 2px;
+    stroke-dasharray: 8, 8;
+    stroke-linecap: round;
+}
+
+rect.bus {
+    fill: @clr-light-blue-700;
+    stroke-width: 1px;
+    stroke: white;
+    opacity: .9;
+}
+
+circle.pax{
+    stroke: none;
+    fill: @clr-pink-700;
+}
+
+circle.stop{
+    fill: white;
+    stroke: none;
+    filter: url(#f1)
+}
+
+g.g-pax circle.pax{
+    fill: @clr-grey-700;
+    stroke: none;
+}
+
