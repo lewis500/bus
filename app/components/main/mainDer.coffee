@@ -3,25 +3,32 @@ _ = require 'lodash'
 d3 = require 'd3'
 Data = require '../../services/data'
 timeout = require( '../../helpers').timeout
-Settings = require '../../services/settings'
+World = require '../../services/World'
 template = '''
-	<div class='button' ng-click='vm.play()'>Play</div>
-	<div class='button' ng-click='vm.pause()'>Stop</div>
-	<slider ng-model='vm.Settings._scale' min='.4' max='1.5' step='.05'></slider>
+	<div layout='row' layout-align='start center'>
+		<div flex='25'>
+			<div class='button' ng-click='vm.play()'>Play</div>
+			<div class='button' ng-click='vm.pause()'>Stop</div>
+		</div>
+		<div flex>
+			<div style='text-align:center; font-family: AmLight;'>Simulation Speed</div>
+			<slider ng-model='vm.World._scale' min='.4' max='1.5' step='.05'></slider>
+		</div>
+	</div>
 '''
 
 class ButtonCtrl
 	constructor: (@scope, @rootScope)->
 		@pause()
 		@adding = false
-		@Settings = Settings
+		@World = World
 
 	add_pax: ->
 		@adding = true
 		timeout(=>
 			Data.add_pax()
 			if not @rootScope.paused then @add_pax() else @adding = false
-		, Settings.add_time)
+		, World.add_time)
 
 	play: ->
 		@pause()

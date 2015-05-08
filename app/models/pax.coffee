@@ -1,4 +1,4 @@
-Settings = require '../services/settings'
+World = require '../services/world'
 {uniqueId} = require( 'lodash')
 require '../helpers'
 
@@ -11,14 +11,14 @@ class Pax
 		@id = uniqueId('pax-')
 
 		@times = 
-			start: Settings.time
+			start: World.time
 			board: Infinity
 			alight: Infinity
 
 	@property 'wait_time', get: -> @times.board - @times.start
 	@property 'total_time', get: -> @times.alight -@times.start
 
-	alight:() -> @times.alight = Settings.time
-	board: () -> @times.board = Settings.time
+	alight:() -> @times.alight = World.time
+	board: () -> @times.board = World.time
 
 module.exports = Pax

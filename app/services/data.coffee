@@ -1,4 +1,4 @@
-Settings = require './settings'
+World = require './world'
 BusStop = require '../models/bus_stop'
 Bus = require '../models/bus'
 Pax = require '../models/pax'
@@ -10,16 +10,16 @@ class Data
 
 	reset:->
 		# create stops
-		@stops = [1..Settings.num_stops].map (n)->
-			position = (Settings.road_length * n / Settings.num_stops  + 20)%Settings.road_length
+		@stops = [1..World.num_stops].map (n)->
+			position = (World.road_length * n / World.num_stops  + 20)%World.road_length
 			newStop = new BusStop(n, position)
 
 		@stops.forEach (stop, i,k)->
 			stop.set_next if k[i+1] then k[i+1] else k[0]
 			
 		# create buses
-		@buses = [0...Settings.num_buses].map (n)=> 
-			stop = @stops[ n * Math.floor Settings.num_stops / Settings.num_buses]
+		@buses = [0...World.num_buses].map (n)=> 
+			stop = @stops[ n * Math.floor World.num_stops / World.num_buses]
 			newBus = new Bus(n, stop)
 			newBus.set_next_stop stop.next_stop
 			newBus
@@ -33,7 +33,7 @@ class Data
 		_.sample(_.without(@stops, stop), 1)[0]
 
 	tick: (dt)->
-		Settings.increment(dt)
+		World.increment(dt)
 		@buses.forEach (bus)-> bus.tick(dt)
 
 	add_pax: ->

@@ -1,5 +1,5 @@
 timeout = require( '../helpers').timeout
-Settings = require '../services/settings'
+World = require '../services/world'
 _ = require 'lodash'
 
 class Bus
@@ -17,21 +17,21 @@ class Bus
 
 	@property 'gap', get: -> 
 		l = @next_stop.location - @location
-		Math.min Math.abs(l), l + Settings.road_length
+		Math.min Math.abs(l), l + World.road_length
 
 	@property 'space', get: ->
 		l = @next_bus.position - @position
-		diff = Math.min Math.abs(l), l + Settings.road_length
-		diff-Settings.space
+		diff = Math.min Math.abs(l), l + World.road_length
+		diff-World.space
 
-	@property 'location', get: -> @position % Settings.road_length
+	@property 'location', get: -> @position % World.road_length
 
 	delay: ->
 		@stopped = true
 		clearInterval(@delay_timeout)
 		@delay_timeout = setTimeout(=> 
 			@stopped = false
-		, Settings.delay)
+		, World.delay)
 
 	release:() -> @stopped = false
 
@@ -43,7 +43,7 @@ class Bus
 	tick: (dt)->
 		if not (@stopped)
 			gap = @gap
-			move = (dt * Settings.bus_velocity)
+			move = (dt * World.bus_velocity)
 			if gap <= move
 				@halt()
 				@position += gap

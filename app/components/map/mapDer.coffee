@@ -1,5 +1,5 @@
 angular = require 'angular'
-Settings = require '../../services/settings'
+World = require '../../services/world'
 Data = require '../../services/data'
 
 class MapCtrl
@@ -9,13 +9,13 @@ class MapCtrl
 		@buses = Data.buses
 		@stops = Data.stops
 		@road = d3.select(@element[0]).select('path.road').node()
-		prevScale = Settings._scale
+		prevScale = World._scale
 		d3.select( @element[0]).select('.g-main')
 			.on 'mouseover', ()->
-				prevScale = Settings._scale
-				Settings._scale = .4
+				prevScale = World._scale
+				World._scale = .4
 			.on 'mouseout', ()->
-				Settings._scale = prevScale
+				World._scale = prevScale
 		@Y = d3.scale.linear().domain([0,100])
 		@X = d3.scale.linear().domain([0,100])
 		@road_data = [ [54, 100], [54, 50], [100, 50], [100, 0], [0, 0], [0,100]].map (d)-> {x: d[0], y: d[1]}
@@ -36,7 +36,7 @@ class MapCtrl
 		@scope.$evalAsync()
 
 	pos2: (datum)->
-		percent = (datum.location / Settings.road_length)
+		percent = (datum.location / World.road_length)
 		road_length = @road.getTotalLength()
 		p0 = @road.getPointAtLength(percent * road_length)
 		p = @road.getPointAtLength((percent+.005)%1 * road_length)
@@ -45,7 +45,7 @@ class MapCtrl
 		
 	positioner: (datum)->
 		road_length = @road.getTotalLength()
-		percent = (datum.location / Settings.road_length)
+		percent = (datum.location / World.road_length)
 		p = @road.getPointAtLength(percent * road_length)
 		p0 = @road.getPointAtLength((percent+.001)%1 * road_length)
 		angle = -Math.atan2(p.y - p0.y, p.x - p0.x)

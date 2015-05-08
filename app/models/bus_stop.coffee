@@ -1,4 +1,4 @@
-Settings = require '../services/Settings'
+World = require '../services/world'
 timeout = require( '../helpers').timeout
 
 class BusStop
@@ -18,15 +18,15 @@ class BusStop
 					alighter.alight()
 					bus.remove_pax(alighter)
 				@task(bus)
-			, Settings.alight_time)
-		else if ((@boarding_paxes.length > 0) and (bus.queue.length < Settings.max_capacity))
+			, World.alight_time)
+		else if ((@boarding_paxes.length > 0) and (bus.queue.length < World.max_capacity))
 			setTimeout(=>
 				boarder = @boarding_paxes.shift()
 				if boarder
 					boarder.board()
 					bus.add_pax(boarder)
 				@task(bus)
-			, Settings.board_time)
+			, World.board_time)
 		else
 			timeout ()=>
 					bus.set_next_stop(@next_stop)

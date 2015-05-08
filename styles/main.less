@@ -24,7 +24,8 @@ body {
   padding: 6px 12px;
   margin-bottom: 0;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: bold;
+  font-family: AmLight;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -70,10 +71,17 @@ h1,h2,h3,h4{
 
 text.bus-icon{
     font-family: 'FontAwesome';
-    font-size: 1em;
+    font-size: .8em;
     // fill: @clr-grey-600;
     text-anchor: middle;
     dominant-baseline: central;
+}
+
+text.bus-label{
+  font-family: AmLight;
+  font-size: 8px;
+  text-anchor: middle;
+  dominant-baseline: central;
 }
 
 // text.bus-icon
@@ -119,6 +127,7 @@ rect.bus {
     fill: white;
     cursor: pointer;
 }
+
 
 circle.stop{
     fill: white;

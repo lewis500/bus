@@ -1,5 +1,5 @@
 _ = require 'lodash'
-Settings = require '../../services/settings'
+World = require '../../services/world'
 
 template = '''
 	<g transform='translate(-32,0)'>
@@ -20,13 +20,29 @@ der = ()->
 		controller: ()->
 			@queue = @data.queue
 		link: (scope, el, attr, vm)->
-			d3.select(el[0]).on 'click', ()-> vm.data.delay()
+			sel = d3. select el[0]
+			sel.on 'click', ()-> 
+					vm.data.delay()
+					sel.transition()
+						.duration 100
+						.ease 'cubic'
+						.attr 
+							'stroke': '#4EA198'
+							'stroke-width': 3
+						.transition()
+						.delay World.delay - 100
+						.duration 200
+						.ease 'back'
+						.attr
+							'stroke-width': 0
+
+
 
 			g = d3.select(el[0]).select('g.g-pax')
 
 			places = []
 
-			[0..Math.floor(Settings.max_capacity/2)].forEach (row)->
+			[0..Math.floor(World.max_capacity/2)].forEach (row)->
 					[0...2].forEach (col)->
 						places.push 
 							row: row
@@ -52,20 +68,20 @@ der = ()->
 					.transition 'grow'
 					.ease 'cubic-out'
 					.delay 10
-					.duration 150 * Settings.scale
+					.duration 150 * World.scale
 					.attr 'r' , 2 
 					.transition 'snapback'
-					.duration 50 * Settings.scale
+					.duration 50 * World.scale
 					.ease 'cubic'
 					.attr 'r', 1.5
 
 				circles.exit()
 					.transition 'leave'
-					.duration 50 * Settings.scale
+					.duration 50 * World.scale
 					.ease 'cubic-out'
 					.attr 'r', 2
 					.transition()
-					.duration 100 * Settings.scale
+					.duration 100 * World.scale
 					.ease 'cubic-in'
 					.attr 'r', 0 
 					.each (d)-> d.spot.filled = false
