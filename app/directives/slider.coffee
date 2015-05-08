@@ -5,21 +5,21 @@ angular = require 'angular'
 odeSlider = ()->
 	directive = 
 		require: '?ngModel'
-		template: '''<div class="ode-slider-wrapper"> 
-		  <div class="ode-track-container"> 
-		    <div class="ode-track"></div> 
-		    <div class="ode-track ode-track-fill"></div> 
+		template: '''<div class="slider-wrapper"> 
+		  <div class="track-container"> 
+		    <div class="track"></div> 
+		    <div class="track track-fill"></div> 
 		  </div> 
-		  <div class="ode-thumb-container">
-		    <div class="ode-thumb"></div>
+		  <div class="thumb-container">
+		    <div class="thumb"></div>
 		  </div>
 		</div>''',
 		link: (scope, el, attr, ngModelCtrl)->
 			# define my variables
 			sel = d3.select el[0]
-			thumbContainer = sel.select('.ode-thumb-container')
-			activeTrack = sel.select('.ode-track-fill')
-			trackContainer = angular.element(el[0].querySelector('.ode-track-container'))
+			thumbContainer = sel.select('.thumb-container')
+			activeTrack = sel.select('.track-fill')
+			trackContainer = angular.element(el[0].querySelector('.track-container'))
 			min = +attr.min
 			max = +attr.max
 			step = +attr.step

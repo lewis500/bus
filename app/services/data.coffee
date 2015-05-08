@@ -19,7 +19,7 @@ class Data
 			
 		# create buses
 		@buses = [0...Settings.num_buses].map (n)=> 
-			stop = @stops[n]
+			stop = @stops[ n * Math.floor Settings.num_stops / Settings.num_buses]
 			newBus = new Bus(n, stop)
 			newBus.set_next_stop stop.next_stop
 			newBus
@@ -33,12 +33,13 @@ class Data
 		_.sample(_.without(@stops, stop), 1)[0]
 
 	tick: (dt)->
-		Settings.time += dt
+		Settings.increment(dt)
 		@buses.forEach (bus)-> bus.tick(dt)
 
 	add_pax: ->
-		@stops.forEach (stop) =>
-			destination = @choose_destination(stop)
+		@stops.forEach (stop,i,k) =>
+			# destination = @choose_destination(stop)
+			destination = k[(i+2)%k.length]
 			new_pax = new Pax(destination, stop)
 			stop.receive_pax(new_pax)
 

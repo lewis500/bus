@@ -12,16 +12,15 @@ class BusStop
 
 	task: (bus)->
 		if @alighting_paxes.length > 0
-			timeout(=>
+			setTimeout(=>
 				alighter = @alighting_paxes.pop()
-				if alighter 
-					@task(bus)
+				if alighter
 					alighter.alight()
 					bus.remove_pax(alighter)
 				@task(bus)
 			, Settings.alight_time)
-		else if @boarding_paxes.length > 0
-			timeout(=>
+		else if ((@boarding_paxes.length > 0) and (bus.queue.length < Settings.max_capacity))
+			setTimeout(=>
 				boarder = @boarding_paxes.shift()
 				if boarder
 					boarder.board()
@@ -29,9 +28,9 @@ class BusStop
 				@task(bus)
 			, Settings.board_time)
 		else if bus.not_ready
-			timeout(=>
+			setTimeout(=>
 				@task(bus)
-			, 25)
+			, 5)
 		else 
 			bus.set_next_stop(@next_stop)
 			bus.release()

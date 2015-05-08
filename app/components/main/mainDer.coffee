@@ -5,48 +5,44 @@ Data = require '../../services/data'
 timeout = require( '../../helpers').timeout
 Settings = require '../../services/settings'
 template = '''
-	<button ng-click='vm.play()'>Play</buton>
-	<button ng-click='vm.pause()'>Stop</buton>
+	<button ng-click='vm.play()'>Play</button>
+	<button ng-click='vm.pause()'>Stop</button>
+	<slider ng-model='vm.Settings._scale' min='.5' max='2' step='.05'></slider>
 '''
 
-class MainCtrl
-	constructor: (@scope)->
-		@paused = false
+class ButtonCtrl
+	constructor: (@scope, @rootScope)->
+		@pause()
 		@adding = false
-		@eval_async = _.throttle(()=> 
-			@scope.$evalAsync()
-		, 10)
+		@Settings = Settings
 
 	add_pax: ->
 		@adding = true
 		timeout(=>
 			Data.add_pax()
-			if not @paused then @add_pax() else @adding = false
+			if not @rootScope.paused then @add_pax() else @adding = false
 		, Settings.add_time)
 
 	play: ->
 		@pause()
 		d3.timer.flush()
-		@paused = false
+		@rootScope.paused = false
 		if not @adding then @add_pax()
 		last = 0
 		d3.timer (elapsed)=> 
 			dt = elapsed - last
 			last = elapsed
 			Data.tick(dt)
-			@eval_async()
-			@paused
+			@scope.$evalAsync()
+			@rootScope.paused
 
-	pause: -> 
-		@paused = true
-		d3.timer.flush()
+	pause: -> @rootScope.paused = true
 
 der = ()->
 	directive =
-		controller: ['$scope', MainCtrl]
+		controller: ['$scope', '$rootScope', ButtonCtrl]
 		controllerAs: 'vm'
 		template: template
 		scope: {}
-
 
 module.exports = der

@@ -7,10 +7,10 @@ class Bus
 		@queue = []
 		@stopped = false
 		@position = @stop.location
-		@velocity = Settings.bus_velocity 
-		@halts = 0;
-		@next_bus = undefined;
-		@next_stop = undefined;
+		@halts = 0
+		@next_bus = undefined
+		@next_stop = undefined
+		@delay_timeout = undefined
 
 	set_next_bus: (bus)-> @next_bus = bus
 	set_next_stop: (stop)-> @next_stop = stop
@@ -25,16 +25,14 @@ class Bus
 	@property 'location', get: -> @position % Settings.road_length
 
 	@property 'not_ready', get: -> 
-		false
-	# @halts > Settings.expected_halts
+		@halts > Settings.expected_halts
 
-	delay_draw:->
-		draw = Math.random()
-		if draw < .002
-			@stopped = true
-			timeout(=> 
-				@stopped=false
-			, 200)
+	delay: ->
+		@stopped = true
+		clearInterval(@delay_timeout)
+		@delay_timeout = setTimeout(=> 
+			@stopped = false
+		, Settings.delay)
 
 	release:() -> @stopped = false
 
@@ -46,13 +44,12 @@ class Bus
 	tick: (dt)->
 		if not (@stopped)
 			gap = @gap
-			move = (dt * @velocity)
+			move = (dt * Settings.bus_velocity)
 			if gap <= move
 				@halt()
 				@position += gap
 			else
 				@position += Math.min(move, @space)
-				@delay_draw()
 
 	remove_pax: (pax)->	@queue.splice(@queue.indexOf(pax), 1)
 

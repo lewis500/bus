@@ -28,5 +28,8 @@
     "q": "^1.2.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.1"
+  },
+  "dependencies": {
+    "less": "^2.5.0"
   }
 }

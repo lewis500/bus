@@ -6,11 +6,11 @@
   <link rel="stylesheet" href="styles/flex.css">
   <link rel="stylesheet" href="styles/boilerplate.css">
   <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
-<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>
-
-
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.min.js"></script>-->
+  <script src='./dist/less.min.js'></script>
 </head>
 <script src='dist/bundle.js'></script>
 
@@ -22,7 +22,7 @@
   </div>
   <div id='content'>
     <div layout='row' layout-margin='25'>
-      <div flex='35' id='left'  layout="column" layout-align="center center">
+      <div flex='35' id='left' layout="column" layout-align="center center">
         <div flex='10'></div>
         <div flex='25'>
           <h1>Why do buses bunch up?</h1>
@@ -38,15 +38,13 @@
     </div>
   </div>
   <svg>
-    <filter id="f1" x="-1" y="-1" width="300%" height="300%">
-      <feOffset result="offOut" in="SourceAlpha" dx="1" dy="2" />
-      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />
-      <feColorMatrix in="blurOut" result="color-out" type="matrix" values="0 0 0 0   0
-                0 0 0 0   0 
-                0 0 0 0   0 
-                0 0 0 .56 0" />
-      <feBlend in="SourceGraphic" in2="color-out" mode="normal" />
-    </filter>
+    <defs>
+      <filter id="f1" x="-1" y="-1" width="300%" height="300%">
+        <feOffset result="offOut" in="SourceAlpha" dx="1" dy="2" />
+        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />
+        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+      </filter>
+    </defs>
   </svg>
 </body>
 

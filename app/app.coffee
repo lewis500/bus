@@ -6,7 +6,7 @@ mapDer = require './components/map/mapDer'
 busDer = require './components/map/busDer'
 shifter = require './directives/shifter'
 stopDer = require './directives/stopDer'
-
+sliderDer = require './directives/slider'
 
 app = angular.module('mainApp', [])
 	.directive 'mainDer', mainDer
@@ -14,3 +14,4 @@ app = angular.module('mainApp', [])
 	.directive 'shifter', shifter
 	.directive 'stopDer', stopDer
 	.directive 'busDer', busDer
+	.directive 'slider', sliderDer

@@ -9,9 +9,18 @@ class MapCtrl
 		@buses = Data.buses
 		@stops = Data.stops
 		@road = d3.select(@element[0]).select('path.road').node()
+		prevScale = Settings._scale
+		d3.select( @element[0]).select('.road')
+			.on 'mouseenter', ()->
+				console.log 'slowdown'
+				prevScale = Settings._scale
+				Settings._scale = .5
+			.on 'mouseleave', ()->
+				console.log 'speedup'
+				Settings._scale = prevScale
 		@Y = d3.scale.linear().domain([0,100])
 		@X = d3.scale.linear().domain([0,100])
-		@road_data = [[0,100], [54, 100], [54, 50], [100, 50], [100, 0], [0, 0]].map (d)-> {x: d[0], y: d[1]}
+		@road_data = [ [54, 100], [54, 50], [100, 50], [100, 0], [0, 0], [0,100]].map (d)-> {x: d[0], y: d[1]}
 
 		@lineFun = d3.svg.line()
 			.x (d)-> @X(d.x)
@@ -19,11 +28,6 @@ class MapCtrl
 
 		angular.element @window 
 			.on 'resize' , ()=> @resize()
-
-		d3.timer(()=> 
-			@resize() 
-			true
-		, 2500)
 
 	resize: ()->
 		@width = @element[0].clientWidth - @mar.left - @mar.right
@@ -48,27 +52,24 @@ class MapCtrl
 		[p.x + Math.sin(angle) * 30, p.y + Math.cos(angle)*30]
 
 template = """
-	<svg width='100%' ng-init='vm.resize()' ng-attr-height='{{vm.height + vm.mar.top + vm.mar.bottom}}' ng-init='vm.resize()'>
+	<svg width='100%' ng-init='vm.resize()' ng-attr-height='{{vm.height + vm.mar.top + vm.mar.bottom}}'>
 		<g class='g-main' shifter='{{::[vm.mar.left, vm.mar.top]}}'>
 			<path class='road' stroke-linejoin="round"  ng-attr-d='{{vm.lineFun(vm.road_data)}}z'></path>
 			<path class='stripe' stroke-linejoin="round"  ng-attr-d='{{vm.lineFun(vm.road_data)}}z'></path>
-
 			<g class='g-stops'>
 				<g ng-repeat='stop in vm.stops' shifter='{{vm.positioner(stop)}}'>
 					<g stop-der=stop></g>
 				</g>
 			</g>
 			<g class='g-buses'>
-				<g ng-repeat='bus in vm.buses' ng-attr-transform='{{vm.pos2(bus)}}' bus-der data=bus>
-				</g>
+				<g ng-repeat='bus in vm.buses' ng-attr-transform='{{vm.pos2(bus)}}' bus-der data=bus></g>
 			</g>
 		</g>
 	</svg>
 """
-					# <rect class='bus' rx='2' ry='2' x='-4' y='-2' width='8' height='4'></rect>
+# <rect class='bus' rx='2' ry='2' x='-4' y='-2' width='8' height='4'></rect>
 
-der = ()->
-
+der = ($rootScope)->
 	directive = 
 		template: template
 		controller: ['$scope','$element','$window', MapCtrl]
@@ -76,6 +77,10 @@ der = ()->
 		bindToController: true
 		controllerAs: 'vm'
 		templateNamespace: 'svg'
+		link: (scope, el, attr)->
+			d3.select(el[0])
+				.select '.road'
+
 		scope: {}
 
 module.exports = der

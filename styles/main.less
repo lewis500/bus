@@ -14,7 +14,10 @@ body {
     padding-bottom: 150px;
     padding-top: 5px;
     font-size: 15px;
+    background-color: @clr-grey-100;
 }
+
+
 
 h1,h2,h3,h4{
     font-family: AmLight;
@@ -45,10 +48,29 @@ h1,h2,h3,h4{
 
 text.bus-icon{
     font-family: 'FontAwesome';
-    font-size: .8em;
-    fill: @clr-grey-600;
+    font-size: 1em;
+    // fill: @clr-grey-600;
     text-anchor: middle;
     dominant-baseline: central;
+}
+
+// text.bus-icon
+
+// STOP COLORING
+.stop-1{
+    fill: @clr-orange-500;
+}
+
+.stop-2{
+    fill: @clr-light-blue-500;
+}
+
+.stop-3{
+    fill: @clr-purple-500;
+}
+
+.stop-4{
+    fill: @clr-pink-500;
 }
 
 line, path{
@@ -56,9 +78,10 @@ line, path{
 }
 
 path.road{
-    stroke-width: 45px;
+    stroke-width: 50px;
     stroke: #514A53;
     fill: none;
+    pointer-events: auto;
 }
 
 path.stripe{
@@ -71,22 +94,18 @@ path.stripe{
 }
 
 rect.bus {
-    fill: #4EA198;
-}
-
-circle.pax{
-    stroke: none;
-    fill: @clr-pink-700;
+    fill: white;
+    cursor: pointer;
 }
 
 circle.stop{
     fill: white;
-    stroke: none;
-    filter: url(#f1)
+    filter: url(#f1);
+    // -webkit-filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
+    // filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
 }
 
-g.g-pax circle.pax{
-    fill: @clr-grey-700;
+circle.pax{
     stroke: none;
 }
 

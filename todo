@@ -1,31 +1,17 @@
+use ng-controller
+
 TODAY
-color the bus in the bus stops
-color the pax
-add/remove pax in link function
-bus schedule
-spacing between buses
-maximum capacities
+slider to speed up/slow down
+rename settings
+
+stop tooltip
+bus tooltip
+put the stops in better locations
 
 
-
-SHORT TERM
-bus schedule
-
-
-NAMING
-space "space to next bus"
+make it so the pax at the stop shrink and scrunch together where there are tons of them
+or just have the stop bump outward
 
 
-ADD SCHEDULE
-have the buses start out at a certain stop
-keep track of how many stops theyve been to
-
-
-
-styles for the buses
-
-draw the road
-draw the stops
-draw the buses
-draw the passengers
+PLOTS
 
