@@ -2,9 +2,9 @@ _ = require 'lodash'
 Settings = require '../../services/settings'
 
 template = '''
-	<g transform='translate(-12,0)'>
-		<rect class='bus' rx='2' ry='2' width='42px' height='16px' x='-8' y='-8'></rect>
-		<g class='g-pax' transform='translate(-3,-3)'></g>
+	<g transform='translate(-32,0)'>
+		<rect class='bus' rx='2' ry='2' width='42px' height='16px' y='-8'></rect>
+		<g class='g-pax' transform='translate(-2,-3)'></g>
 	</g>
 '''
 
@@ -19,19 +19,14 @@ der = ()->
 		templateNamespace: 'svg'
 		controller: ()->
 			@queue = @data.queue
-			@pax_pos = (i)->
-				row = Math.floor i / 2
-				col = i % 2
-				x = row * 3.5
-				y = col * 6
-				[x,y]
 		link: (scope, el, attr, vm)->
-			d3.select(el[0]).on 'click', ()->
-				vm.data.delay()
+			d3.select(el[0]).on 'click', ()-> vm.data.delay()
 
 			g = d3.select(el[0]).select('g.g-pax')
+
 			places = []
-			[0...Math.floor(Settings.max_capacity/2)].forEach (row)->
+
+			[0..Math.floor(Settings.max_capacity/2)].forEach (row)->
 					[0...2].forEach (col)->
 						places.push 
 							row: row
@@ -50,7 +45,7 @@ der = ()->
 							spot = _.find places, (v)-> !v.filled 
 							d.spot = spot
 							spot.filled = true
-							x = spot.row * 3.5
+							x =  40 - spot.row * 3.5
 							y = spot.col * 6
 							"translate( #{x}, #{y} )"
 						class: (d,i)->'pax stop-' + d.destination.n
@@ -75,7 +70,6 @@ der = ()->
 					.attr 'r', 0 
 					.each (d)-> d.spot.filled = false
 					.remove()
-
 
 			scope.$watch 'vm.queue.length', update
 

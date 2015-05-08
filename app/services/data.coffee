@@ -11,7 +11,7 @@ class Data
 	reset:->
 		# create stops
 		@stops = [1..Settings.num_stops].map (n)->
-			position = Settings.road_length * n / Settings.num_stops 
+			position = (Settings.road_length * n / Settings.num_stops  + 20)%Settings.road_length
 			newStop = new BusStop(n, position)
 
 		@stops.forEach (stop, i,k)->

@@ -6,7 +6,7 @@ class Bus
 	constructor: (@n, @stop)->
 		@queue = []
 		@stopped = false
-		@position = @stop.location
+		@position = @stop.location + 3
 		@halts = 0
 		@next_bus = undefined
 		@next_stop = undefined
@@ -15,17 +15,16 @@ class Bus
 	set_next_bus: (bus)-> @next_bus = bus
 	set_next_stop: (stop)-> @next_stop = stop
 
-	@property 'gap', get: -> @next_stop.location - @location
+	@property 'gap', get: -> 
+		l = @next_stop.location - @location
+		Math.min Math.abs(l), l + Settings.road_length
 
 	@property 'space', get: ->
-		space = @next_bus.position - @position
-		diff = if (space > 0) then space else (space + Settings.road_length)
+		l = @next_bus.position - @position
+		diff = Math.min Math.abs(l), l + Settings.road_length
 		diff-Settings.space
 
 	@property 'location', get: -> @position % Settings.road_length
-
-	@property 'not_ready', get: -> 
-		@halts > Settings.expected_halts
 
 	delay: ->
 		@stopped = true

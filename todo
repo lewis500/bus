@@ -1,17 +1,15 @@
-use ng-controller
+BUS FORMAT
+rename settings
+fix the drop shadow
+
+
 
 TODAY
-slider to speed up/slow down
-rename settings
+implement hte scheme from greypants
 
+TODAY
 stop tooltip
 bus tooltip
-put the stops in better locations
 
-
-make it so the pax at the stop shrink and scrunch together where there are tons of them
-or just have the stop bump outward
-
-
-PLOTS
-
+LONG TERM
+have the buses transition around

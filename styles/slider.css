@@ -34,7 +34,8 @@ slider .track {
 }
 
 slider .track-fill {
-  background-color: #06AEA7;
+  background-color: #4EA198;
+  transition: width .08s ease-in-out;
 }
 
 slider .thumb-container {
@@ -43,7 +44,7 @@ slider .thumb-container {
   top: 50%;
   -webkit-transform: translate3d(-50%, -50%, 0);
   transform: translate3d(-50%, -50%, 0);
-  /*transition: left .05s;*/
+  transition: left .08s ease-in-out;
 }
 
 slider .thumb {

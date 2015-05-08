@@ -27,13 +27,11 @@ class BusStop
 					bus.add_pax(boarder)
 				@task(bus)
 			, Settings.board_time)
-		else if bus.not_ready
-			setTimeout(=>
-				@task(bus)
-			, 5)
-		else 
-			bus.set_next_stop(@next_stop)
-			bus.release()
+		else
+			timeout ()=>
+					bus.set_next_stop(@next_stop)
+					bus.release()
+				, 25
 
 	halt:(bus)->
 		@alighting_paxes = bus.queue.filter (pax)=> pax.destination is this

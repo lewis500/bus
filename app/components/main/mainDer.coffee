@@ -5,9 +5,9 @@ Data = require '../../services/data'
 timeout = require( '../../helpers').timeout
 Settings = require '../../services/settings'
 template = '''
-	<button ng-click='vm.play()'>Play</button>
-	<button ng-click='vm.pause()'>Stop</button>
-	<slider ng-model='vm.Settings._scale' min='.5' max='2' step='.05'></slider>
+	<div class='button' ng-click='vm.play()'>Play</div>
+	<div class='button' ng-click='vm.pause()'>Stop</div>
+	<slider ng-model='vm.Settings._scale' min='.4' max='1.5' step='.05'></slider>
 '''
 
 class ButtonCtrl
