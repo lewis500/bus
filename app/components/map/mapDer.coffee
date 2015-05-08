@@ -13,7 +13,7 @@ class MapCtrl
 		d3.select( @element[0]).select('.g-main')
 			.on 'mouseover', ()->
 				prevScale = World._scale
-				World._scale = .4
+				World._scale = .3
 			.on 'mouseout', ()->
 				World._scale = prevScale
 		@Y = d3.scale.linear().domain([0,100])

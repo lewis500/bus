@@ -42,12 +42,13 @@ der = ()->
 
 			places = []
 
-			[0..Math.floor(World.max_capacity/2)].forEach (row)->
-					[0...2].forEach (col)->
-						places.push 
-							row: row
-							col: col
-							filled: false
+			[0..Math.floor(World.max_capacity/2)]
+				.forEach (row)->
+						[0...2].forEach (col)->
+							places.push 
+								row: row
+								col: col
+								filled: false
 
 			update = (newVal, oldVal)->
 				circles = g.selectAll 'circle.pax'
