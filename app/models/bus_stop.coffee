@@ -15,7 +15,7 @@ class BusStop
 			@history.push 
 				count: @boarding_paxes.length
 				time: World.time
-			if history.length > 15000 then @history.shift()
+			if (World.time - @history[0].time) > 25000 then @history.shift()
 		, 5)
 
 	task: (bus)->
