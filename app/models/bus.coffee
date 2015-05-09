@@ -3,10 +3,10 @@ World = require '../services/world'
 _ = require 'lodash'
 
 class Bus
-	constructor: (@n, @stop)->
+	constructor: (@n, stop)->
 		@queue = []
 		@stopped = false
-		@position = @stop.location + 3
+		@position = stop.location + 3
 		@halts = 0
 		@next_bus = undefined
 		@next_stop = undefined
@@ -20,9 +20,9 @@ class Bus
 		Math.min Math.abs(l), l + World.road_length
 
 	@property 'space', get: ->
-		l = @next_bus.position - @position
-		diff = Math.min Math.abs(l), l + World.road_length
-		diff-World.space
+		l0 = @next_bus.position - @position
+		l1 = if l0 < 0 then l0 + World.road_length else l0
+		l1 - World.space
 
 	@property 'location', get: -> @position % World.road_length
 

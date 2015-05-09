@@ -19,10 +19,11 @@ der = ()->
 
 			sel = d3.select(el[0]).classed('y axis', true)
 
-			if @tickFormat then yAxisFun.tickFormat 'tickFormat'
+			yAxisFun.tickFormat(d3.format("d"))
+			    .tickSubdivide(0)
 
 			update = ()=>
-				yAxisFun.tickSize( -vm.width)
+				yAxisFun.tickSize(-vm.width)
 				sel.call(yAxisFun)
 
 			update()

@@ -16,10 +16,11 @@ der = ()->
 			xAxisFun = d3.svg.axis()
 				.scale vm.scale
 				.orient 'bottom'
+				.ticks(1)
 
 			sel = d3.select(el[0]).classed('x axis', true)
 
-			if @tickFormat then xAxisFun.tickFormat 'tickFormat'
+			# if @tickFormat then xAxisFun.tickFormat 'tickFormat'
 
 			update = ()=>
 				xAxisFun.tickSize( -vm.height)

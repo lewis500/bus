@@ -16,7 +16,7 @@ class BusStop
 				count: @boarding_paxes.length
 				time: World.time
 			if (World.time - @history[0].time) > 25000 then @history.shift()
-		, 5)
+		, 10)
 
 	task: (bus)->
 		if @alighting_paxes.length > 0
@@ -39,7 +39,7 @@ class BusStop
 			timeout ()=>
 					bus.set_next_stop(@next_stop)
 					bus.release()
-				, 25
+				, 50
 
 	halt:(bus)->
 		@alighting_paxes = bus.queue.filter (pax)=> pax.destination is this

@@ -14,10 +14,11 @@ template = '''
 		<g class='boilerplate' shifter='{{[vm.mar.left, vm.mar.top]}}'>
 			<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'></rect>
 			<g y-axis scale='vm.Y' width='vm.width'></g>
-			<g ex-axis scale='vm.X' height='vm.height' shifter='{{[0,vm.height]}}'></g>
+			<g ex-axis scale='vm.X' height='vm.height' shifter='{{[0,vm.height]}}' ></g>
 		</g>
 		<g class='main' clip-path="url(#{{::vm.ID}})" shifter='{{::[vm.mar.left, vm.mar.top]}}'>
-			<path class='cumulative' line-der watch='vm.watch' data='vm.data' line-fun='vm.lineFun'></path>
+			<path class='cumulative-area' line-der watch='vm.watch' data='vm.data' line-fun='vm.areaFun'></path>
+			<path class='cumulative-line' line-der watch='vm.watch' data='vm.data' line-fun='vm.lineFun'></path>
 		</g>
 	</svg>
 '''
@@ -28,14 +29,20 @@ class cumCtrl extends plotCtrl
 
 		@data = Data.stops[0].history
 
-		@lineFun = d3.svg.area()
+		@lineFun = d3.svg.line()
+			.interpolate 'monotone'
+			.y (d)=> @Y(d.count)
+			.x (d)=> @X(World.max_history - (World.time - d.time)/1000)
+
+		@areaFun = d3.svg.area()
+			.interpolate 'monotone'
 			.y1 (d)=> @Y(d.count)
 			.y0 (d)=> @Y(0)
 			.x (d)=> @X(World.max_history - (World.time - d.time)/1000)
 
 		@ID = _.uniqueId 'chart'
 
-		@X.domain([0,World.max_history+10])
+		@X.domain([0,World.max_history])
 
 		@scope.$watch(()=> 
 						@data.slice(-1)[0]?.time + @data.length
