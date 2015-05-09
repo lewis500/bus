@@ -3,7 +3,7 @@ _ = require 'lodash'
 d3 = require 'd3'
 Data = require '../../services/data'
 timeout = require( '../../helpers').timeout
-World = require '../../services/World'
+World = require '../../services/world'
 template = '''
 	<div layout='row' layout-align='start center'>
 		<div flex='25'>
@@ -12,7 +12,7 @@ template = '''
 		</div>
 		<div flex>
 			<div style='text-align:center; font-family: AmLight;'>Simulation Speed</div>
-			<slider ng-model='vm.World._scale' min='.4' max='1.5' step='.05'></slider>
+			<slider ng-model='vm.World._scale' min='.3' max='1.5' step='.05'></slider>
 		</div>
 	</div>
 '''

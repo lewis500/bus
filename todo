@@ -1,14 +1,18 @@
-BUS FORMAT
-rename settings
+PLOT MOVING AVERAGE WAITING TIME, TRAVEL TIME, DOOR-TO-DOOR TIME
 
+PLOT
+make a tooltip pop up over stations
+plot 
 
 
 TODAY
-implement hte scheme from greypants
+insted of having them start at stops, havee them start random places.
+
 
 TODAY
 stop tooltip
 bus tooltip
 
 LONG TERM
+svg icon in the slider
 have the buses transition around
