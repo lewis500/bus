@@ -30,6 +30,7 @@
     "watchify": "^3.2.1"
   },
   "dependencies": {
-    "less": "^2.5.0"
+    "less": "^2.5.0",
+    "textures": "^1.0.3"
   }
 }

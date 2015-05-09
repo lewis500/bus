@@ -30,19 +30,37 @@
         <div flex>
           <p>Click a bus to force it to brake. After a while, they'll bunch up.</p>
         </div>
+        <div cum-chart flex></div>
       </div>
       <div flex='65' id='right' layout='column'>
         <div main-der></div>
         <div map-der></div>
       </div>
     </div>
+
   </div>
   <svg>
     <defs>
       <filter id="f1" x="-1" y="-1" width="300%" height="300%">
-        <feOffset result="offOut" in="SourceAlpha" dx="1" dy="2" />
-        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />
-        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+        <feOffset result="offOut" in="SourceAlpha" dx="1" dy="1.25"/>
+        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+        <feColorMatrix in="blurOut" result="color-out" type="matrix"
+             values="0 0 0 0   0
+                     0 0 0 0   0 
+                     0 0 0 0   0 
+                     0 0 0 0.4 0"/>
+        <feBlend in="SourceGraphic" in2="color-out" mode="normal" />
+      </filter>
+      
+      <filter id="f2"  x="-1" y="-1" width="300%" height="300%">
+        <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0"/>
+        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+        <feColorMatrix in="blurOut" result="color-out" type="matrix"
+             values="0 0 0 0   0
+                     0 0 0 0   0 
+                     0 0 0 0   0 
+                     0 0 0 0.7 0"/>
+        <feBlend in="SourceGraphic" in2="color-out" mode="normal" />
       </filter>
     </defs>
   </svg>

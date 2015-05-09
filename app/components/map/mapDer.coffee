@@ -1,6 +1,7 @@
 angular = require 'angular'
 World = require '../../services/world'
 Data = require '../../services/data'
+textures = require 'textures'
 
 class MapCtrl
 	constructor: (@scope, @element, @window) ->
@@ -10,6 +11,15 @@ class MapCtrl
 		@stops = Data.stops
 		@road = d3.select(@element[0]).select('path.road').node()
 		prevScale = World._scale
+
+		@texture = textures.paths()
+		    .d("woven")
+		    .size(1.7)
+		    .strokeWidth(.7)
+		    .stroke('#514A53')
+
+		d3.select(@element[0]).select('svg').call(@texture)
+
 		d3.select( @element[0]).select('.g-main')
 			.on 'mouseover', ()->
 				prevScale = World._scale
@@ -54,7 +64,7 @@ class MapCtrl
 template = """
 	<svg width='100%' ng-init='vm.resize()' ng-attr-height='{{vm.height + vm.mar.top + vm.mar.bottom}}'>
 		<g class='g-main' shifter='{{::[vm.mar.left, vm.mar.top]}}'>
-			<path class='road' stroke-linejoin="round"  ng-attr-d='{{vm.lineFun(vm.road_data)}}z'></path>
+			<path class='road' stroke-linejoin="round"  stroke='{{vm.texture.url()}}' ng-attr-d='{{vm.lineFun(vm.road_data)}}z'></path>
 			<path class='stripe' stroke-linejoin="round"  ng-attr-d='{{vm.lineFun(vm.road_data)}}z'></path>
 			<g class='g-stops'>
 				<g ng-repeat='stop in vm.stops' shifter='{{vm.positioner(stop)}}'>
@@ -67,7 +77,6 @@ template = """
 		</g>
 	</svg>
 """
-# <rect class='bus' rx='2' ry='2' x='-4' y='-2' width='8' height='4'></rect>
 
 der = ($rootScope)->
 	directive = 

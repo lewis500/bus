@@ -3,19 +3,21 @@ require '../helpers'
 class World
 	constructor: ()->
 		@max_capacity= 20
+		@max_history = 30
 		@road_length= 100
 		@num_buses= 2
 		@num_stops= 4
-		@delay = 1500
+		@_delay = 1000
 		@space= 4
 		@_scale= 1
 		@time= 0
 		@_bus_velocity= 15/1000
 		@_boarding= 300
-		@_alighting= 250
-		@_add_time= 2100
+		@_alighting= 215
+		@_add_time= 1800
 	increment: (dt)->
-		@time += dt*@scale
+		@time += dt*@_scale
+	@property 'delay', get:-> @_delay * @scale
 	@property 'scale', get: -> 1/@_scale
 	@property 'bus_velocity', get:->@_scale * @_bus_velocity
 	@property 'board_time', get: ->@scale * @_boarding

@@ -1,11 +1,11 @@
 PLOT MOVING AVERAGE WAITING TIME, TRAVEL TIME, DOOR-TO-DOOR TIME
 
-PLOT
-make a tooltip pop up over stations
+STATION PLOT
 plot 
 
-
 TODAY
+instead of using the timer, try 
+
 insted of having them start at stops, havee them start random places.
 
 
@@ -16,3 +16,5 @@ bus tooltip
 LONG TERM
 svg icon in the slider
 have the buses transition around
+put a texure on the road using texturejs
+reset button

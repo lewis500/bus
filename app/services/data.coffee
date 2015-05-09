@@ -35,10 +35,10 @@ class Data
 	tick: (dt)->
 		World.increment(dt)
 		@buses.forEach (bus)-> bus.tick(dt)
+		@stops.forEach (stop)-> stop.snapshot()
 
 	add_pax: ->
 		@stops.forEach (stop,i,k) =>
-			# destination = @choose_destination(stop)
 			destination = k[(i+2)%k.length]
 			new_pax = new Pax(destination, stop)
 			stop.receive_pax(new_pax)

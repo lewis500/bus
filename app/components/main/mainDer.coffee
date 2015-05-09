@@ -37,7 +37,7 @@ class ButtonCtrl
 		if not @adding then @add_pax()
 		last = 0
 		d3.timer (elapsed)=> 
-			dt = elapsed - last
+			dt = Math.min(elapsed - last, 24)
 			last = elapsed
 			Data.tick(dt)
 			@scope.$evalAsync()
