@@ -3,11 +3,11 @@ require '../helpers'
 class World
 	constructor: ()->
 		@max_capacity= 20
-		@max_history = 30
+		@max_history = 20
 		@road_length= 100
 		@num_buses= 2
 		@num_stops= 4
-		@_delay = 700
+		@_delay = 300
 		@space= 4
 		@_scale= 1
 		@time= 0
