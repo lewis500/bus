@@ -35,7 +35,7 @@ class Data
 	tick: (dt)->
 		World.increment(dt)
 		@buses.forEach (bus)-> bus.tick(dt)
-		@stops.forEach (stop)-> stop.snapshot()
+		# @stops.forEach (stop)-> stop.snapshot()
 
 	add_pax: ->
 		@stops.forEach (stop,i,k) =>

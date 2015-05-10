@@ -25,6 +25,9 @@ der = ()->
 			d3.select(el[0]).attr 'class', 'stop-'+ vm.data.n
 
 			update = (newVal, oldVal)->
+
+
+
 				circles = g.selectAll 'circle.pax'
 					.data vm.queue, (d)-> d.id
 

@@ -37,6 +37,14 @@ class MapCtrl
 		angular.element @window 
 			.on 'resize' , ()=> @resize()
 
+	mouseover: (event)->
+		h = angular.element(@element[0])[0].getBoundingClientRect()
+		g = event.target.getBoundingClientRect()
+		d3.select(@element[0]).select('#test')
+			.style
+				left: g.left - h.left
+				top: g.top - h.top
+
 	resize: ()->
 		@width = @element[0].clientWidth - @mar.left - @mar.right
 		@height = @width * @aspectRatio
@@ -77,6 +85,7 @@ template = """
 		</g>
 	</svg>
 """
+    # <div id='test' style='width: 50px; height: 50px; background-color: red; position: absolute;'></div>
 
 der = ($rootScope)->
 	directive = 
