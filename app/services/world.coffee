@@ -7,7 +7,7 @@ class World
 		@road_length= 100
 		@num_buses= 2
 		@num_stops= 4
-		@_delay = 300
+		@_delay = 1000
 		@space= 4
 		@_scale= 1
 		@time= 0
