@@ -1,3 +1,8 @@
+TODO
+get rid of simulation speed
+
+
+
 SHORT TERM
 make some div pop up above the charts
 
@@ -31,3 +36,5 @@ IAN'S NOTES
 selector gorup around bus
 longer delay
 simulation speed isn't important
+don't slow down on mouseover, pause
+add more time to the plots

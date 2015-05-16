@@ -10,12 +10,9 @@ template = '''
 			<div class='button' ng-click='vm.play()'>Play</div>
 			<div class='button' ng-click='vm.pause()'>Stop</div>
 		</div>
-		<div flex>
-			<div style='text-align:center; font-family: AmLight;'>Simulation Speed</div>
-			<slider ng-model='vm.World._scale' min='.3' max='1.5' step='.05'></slider>
-		</div>
 	</div>
 '''
+			# <slider ng-model='vm.World._scale' min='.3' max='1.5' step='.05'></slider>
 
 class ButtonCtrl
 	constructor: (@scope, @rootScope)->

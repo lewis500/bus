@@ -9,7 +9,7 @@ class World
 		@num_stops= 4
 		@_delay = 1000
 		@space= 4
-		@_scale= 1
+		@_scale= 1.8
 		@time= 0
 		@_bus_velocity= 15/1000
 		@_boarding= 300

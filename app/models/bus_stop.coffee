@@ -11,12 +11,12 @@ class BusStop
 	set_next: (stop)->
 		@next_stop = stop
 
-	snapshot: _.throttle( ()->
+	snapshot: _.throttle ()->
 			@history.push 
 				count: @boarding_paxes.length
 				time: World.time
-			if (World.time - @history[0].time) > 20000 then @history.shift()
-		, 12)
+			if (World.time - @history[0].time) > 40000 then @history.shift()
+		, 20
 
 	task: (bus)->
 		if @alighting_paxes.length > 0
