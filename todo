@@ -1,6 +1,10 @@
+
+
+
+
 TODO
 get rid of simulation speed
-
+fix how the line slide left
 
 
 SHORT TERM
@@ -25,11 +29,7 @@ stop tooltip
 bus tooltip
 
 LONG TERM
-svg icon in the slider
-have the buses transition around
-put a texure on the road using texturejs
 reset button
-
 
 
 IAN'S NOTES

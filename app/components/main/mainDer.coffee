@@ -12,7 +12,6 @@ template = '''
 		</div>
 	</div>
 '''
-			# <slider ng-model='vm.World._scale' min='.3' max='1.5' step='.05'></slider>
 
 class ButtonCtrl
 	constructor: (@scope, @rootScope)->

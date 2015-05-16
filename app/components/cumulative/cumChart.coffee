@@ -17,8 +17,8 @@ template = '''
 			<g ex-axis scale='vm.X' height='vm.height' shifter='{{[0,vm.height]}}' ></g>
 		</g>
 		<g class='main' clip-path="url(#{{::vm.ID}})" shifter='{{::[vm.mar.left, vm.mar.top]}}'>
-			<path class='cumulative-area' line-der watch='vm.watch' data='vm.data' line-fun='vm.areaFun'></path>
-			<path class='cumulative-line' line-der watch='vm.watch' data='vm.data' line-fun='vm.lineFun'></path>
+			<path class='cumulative-area'/>
+			<path class='cumulative-line'/>
 		</g>
 	</svg>
 '''
@@ -28,6 +28,11 @@ class cumCtrl extends plotCtrl
 		super(@scope, @element)
 
 		@data = Data.stops[0].history
+
+		cumArea = d3.select(@element[0]).select 'path.cumulative-area'
+			.datum @data
+		cumLine = d3.select(@element[0]).select 'path.cumulative-line'
+			.datum @data
 
 		@lineFun = d3.svg.line()
 			.interpolate 'monotone'
@@ -44,14 +49,26 @@ class cumCtrl extends plotCtrl
 
 		@X.domain([0,World.max_history])
 
-		@scope.$watch(()=> 
-						@data.slice(-1)[0]?.time + @data.length
-					, ()=>
-						max = d3.max @data, (d)-> 
-							d.count
-						@Y.domain([0, Math.max(5, max * 1.2) ]))
+		update = =>
+			max = d3.max @data, (d)-> 
+				d.count
+			
+			@Y.domain [0, Math.max(5 , max * 1.2) ]
 
-	watch: (data)-> data[data.length-1]?.time + data.length
+			cumArea
+				.attr 'd' , @areaFun
+				# .attr 'transform', null
+				# .transition()
+				.attr 'transform', "translate(#{@X(-1)},0)"	
+
+			cumLine.attr 'd' , @lineFun
+				# .attr 'transform', null
+				# .transition()
+				.attr 'transform', "translate(#{@X(-1)},0)"	
+
+		@scope.$watch ()=> 
+						@data.slice(-1)[0]?.time
+					, update
 
 der = ()->
 	directive = 
