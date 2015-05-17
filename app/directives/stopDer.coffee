@@ -15,17 +15,17 @@ class stopDerCtrl
 			d3.select @element[0]
 				.on 'mouseover' , =>
 					@data.show = true
+					@scope.$evalAsync()
 				.on 'mouseleave', =>
 					@data.show = false
+					@scope.$evalAsync()
+
+			@scope.$watch ()=>
+					@element[0].getBoundingClientRect().left
+				, (newVal)=>
+					@data.loc = @element[0].getBoundingClientRect()
 			
-			angular.element window
-				.on 'resize' , @resizer
-
-	resizer: =>
-				@data.loc = @element[0].getBoundingClientRect()
-
 link = (scope, el, attr, vm)->
-
 			sel = d3.select el[0]
 				.attr 'class', 'stop-'+vm.data.n
 

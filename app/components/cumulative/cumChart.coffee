@@ -64,13 +64,13 @@ class cumCtrl extends plotCtrl
 
 		@cumArea
 			.attr 'd' , @areaFun
-			# .attr 'transform', null
-			# .transition()
+			.attr 'transform', null
+			.transition()
 			.attr 'transform', "translate(#{@X(-1)},0)"	
 
 		@cumLine.attr 'd' , @lineFun
-			# .attr 'transform', null
-			# .transition()
+			.attr 'transform', null
+			.transition()
 			.attr 'transform', "translate(#{@X(-1)},0)"	
 
 

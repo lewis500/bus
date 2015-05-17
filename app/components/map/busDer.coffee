@@ -33,10 +33,7 @@ der = ()->
 						.delay World.delay - 100
 						.duration 200
 						.ease 'back'
-						.attr
-							'stroke-width': 0
-
-
+						.attr 'stroke-width': 0
 
 			g = d3.select(el[0]).select('g.g-pax')
 
@@ -66,28 +63,24 @@ der = ()->
 							y = spot.col * 6
 							"translate( #{x}, #{y} )"
 						class: (d,i)->'pax stop-' + d.destination.n
-					.transition()
+					.transition 'grow'
 					.ease 'cubic-out'
 					.delay 10
-					.duration 225 
+					.duration 180 
 					.attr 'r' , 2 
-					.transition()
+					.transition 'shrink'
 					.duration 90 
 					.ease 'cubic'
 					.attr 'r', 1.5
 
 				circles.exit()
-					.transition()
-					.duration 50 
-					.ease 'cubic-out'
-					.attr 'r', 2
-					.transition()
+					.transition 'leave'
 					.duration 80 
 					.ease 'cubic'
-					.attr 'r', 0 
-					.each (d)->
+					.attr 'r', 0
+					.each 'end' , (d)->
 						d.spot.filled = false
-					.remove()
+						d3.select(this).remove()
 
 			scope.$watch 'vm.queue.length', update
 
