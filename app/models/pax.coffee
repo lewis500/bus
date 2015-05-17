@@ -8,7 +8,7 @@ class Pax
 			alight: 0
 			board: 0
 
-		@id = uniqueId('pax-')
+		@id = uniqueId 'pax-'
 
 		@times = 
 			start: World.time

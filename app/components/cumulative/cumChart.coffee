@@ -4,7 +4,7 @@ World = require '../../services/world'
 d3 = require 'd3'
 
 template = '''
-	<div class='cum-chart' >
+	<div class='cum-chart' ng-init='vm.resize()'>
 		<svg ng-attr-height='{{vm.height + vm.mar.top + vm.mar.bottom}}'>
 			<defs>
 				<clippath id='{{::vm.ID}}'>
@@ -40,6 +40,7 @@ class cumCtrl extends plotCtrl
 		@ID = _.uniqueId 'chart'
 
 		@X.domain [0,World.max_history]
+		@Y.domain [0, 8 ]
 
 		@scope.$watch => 
 						@stop.history.slice(-1)[0]?.time
@@ -59,7 +60,6 @@ class cumCtrl extends plotCtrl
 	update: =>
 		max = d3.max @stop.history, (d)-> 
 			d.count
-		
 		@Y.domain [0, 8 ]
 
 		@cumArea

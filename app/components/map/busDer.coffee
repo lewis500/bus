@@ -66,26 +66,27 @@ der = ()->
 							y = spot.col * 6
 							"translate( #{x}, #{y} )"
 						class: (d,i)->'pax stop-' + d.destination.n
-					.transition 'grow'
+					.transition()
 					.ease 'cubic-out'
 					.delay 10
-					.duration 150 
+					.duration 225 
 					.attr 'r' , 2 
-					.transition 'snapback'
-					.duration 50 
+					.transition()
+					.duration 90 
 					.ease 'cubic'
 					.attr 'r', 1.5
 
 				circles.exit()
-					.transition 'leave'
+					.transition()
 					.duration 50 
 					.ease 'cubic-out'
 					.attr 'r', 2
 					.transition()
-					.duration 100 
-					.ease 'cubic-in'
+					.duration 80 
+					.ease 'cubic'
 					.attr 'r', 0 
-					.each (d)-> d.spot.filled = false
+					.each (d)->
+						d.spot.filled = false
 					.remove()
 
 			scope.$watch 'vm.queue.length', update

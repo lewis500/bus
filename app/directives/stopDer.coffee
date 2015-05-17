@@ -1,7 +1,7 @@
 World = require '../services/world'
 
 template = '''
-	<circle class='stop' r='22' ></circle>
+	<circle class='stop' r='22' ng-init='vm.resizer()'></circle>
 	<text class='bus-icon' y ='-2'>
 		&#xf207;
 	</text>
@@ -12,15 +12,12 @@ template = '''
 class stopDerCtrl
 	constructor: (@scope, @element)->
 			@queue = @data.boarding_paxes
-			el = angular.element(@element[0])[0]
 			d3.select @element[0]
 				.on 'mouseover' , =>
 					@data.show = true
 				.on 'mouseleave', =>
 					@data.show = false
 			
-			@resizer()		
-
 			angular.element window
 				.on 'resize' , @resizer
 
@@ -86,7 +83,6 @@ link = (scope, el, attr, vm)->
 					.remove()
 
 			scope.$watch 'vm.queue.length', update
-
 
 der = ()->
 	directive = 
