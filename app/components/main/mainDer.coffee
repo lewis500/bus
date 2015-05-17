@@ -11,6 +11,7 @@ template = '''
 			<div class='button' ng-click='vm.pause()'>Stop</div>
 		</div>
 	</div>
+	<div cum-chart ng-repeat='lew in vm.stops' stop=lew ng-style='{left: lew.loc.left - 65, top: lew.loc.top - 100}' ng-class='{show: lew.show}'></div>
 '''
 
 class ButtonCtrl
@@ -18,6 +19,7 @@ class ButtonCtrl
 		@pause()
 		@adding = false
 		@World = World
+		@stops = Data.stops
 
 	add_pax: ->
 		@adding = true
@@ -33,7 +35,7 @@ class ButtonCtrl
 		if not @adding then @add_pax()
 		last = 0
 		d3.timer (elapsed)=> 
-			dt = Math.min(elapsed - last, 24)
+			dt = Math.min elapsed - last,24
 			last = elapsed
 			Data.tick(dt)
 			@scope.$evalAsync()

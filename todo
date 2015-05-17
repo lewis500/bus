@@ -1,14 +1,10 @@
 TOOLTIP DIRECTIVE
+have the history start out with something so you don't get those errors are first
 
 
 
 
 
-make the plot directive not actually located in the svg, but rather have it append something to the body
-
-TODO
-
-rename 
 
 get rid of simulation speed
 fix how the line slide left

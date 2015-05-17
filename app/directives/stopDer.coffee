@@ -1,14 +1,31 @@
 World = require '../services/world'
 
 template = '''
-	<circle class='stop' ng-attr-r='{{vm.radius}}'>
-		</circle>
+	<circle class='stop' ng-attr-r='{{vm.radius}}' ></circle>
 	<text class='bus-icon' y ='-2'>
 		&#xf207;
 	</text>
 	<text class='bus-label' y='8'>STOP</text>
 	<g class='g-pax'></g>
 '''
+
+controller = (@scope, @element)->
+			@radius = 22
+			@queue = @data.boarding_paxes
+			el = angular.element( @element[0])[0]
+			d3.select @element[0]
+				.on 'mouseover' , =>
+					@data.show = true
+					@scope.$evalAsync()
+				.on 'mouseleave', =>
+					@data.show = false
+					@scope.$evalAsync()
+					
+			resizer = =>
+					@data.loc = el.getBoundingClientRect()
+			resizer()
+			angular.element window
+				.on 'resize' , resizer
 
 der = ()->
 	directive = 
@@ -18,13 +35,11 @@ der = ()->
 		bindToController: true
 		scope: 
 			data: '=stopDer'
-		controller: ()->
-			@radius = 22
-			@queue = @data.boarding_paxes
+		controller: ['$scope', '$element', controller]
 		link: (scope, el, attr, vm)->
-			g = d3.select(el[0]).select('g.g-pax')
-
-			d3.select(el[0]).attr 'class', 'stop-'+ vm.data.n
+			sel = d3.select el[0]
+				.attr 'class', 'stop-'+vm.data.n
+			g = sel.select 'g.g-pax'
 
 			update = (newVal, oldVal)->
 				circles = g.selectAll 'circle.pax'

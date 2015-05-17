@@ -17,11 +17,34 @@ body {
     background-color: @clr-grey-100;
 }
 
-div[cum-chart]{
+div[cum-chart] {
+  padding: 10px;
+  position: absolute;
+  border-radius: 2px;
+  z-index: 5;
+  box-shadow: .5px .5px 2px  rgba(0,0,0, 0.4);
   background-color: white;
+  opacity: 0;
+  transition: opacity ease-in-out .2s;
 }
 
+div[cum-chart].show{
+  opacity: 1;
+  transition: opacity ease-in-out .125s;
+}
+
+div.cum-chart{
+  width: 150px;
+  height: 85px;
+}
+
+
 div[map-der] svg{
+  width: 100%;
+
+}
+
+cum-chart svg{
   width: 100%;
 }
 
@@ -117,7 +140,6 @@ line, path{
 
 path.road{
     stroke-width: 50px;
-    // stroke: #514A53;
     fill: none;
     stroke-linejoin: round;
     pointer-events: auto;
