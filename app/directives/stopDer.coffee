@@ -1,18 +1,20 @@
 World = require '../services/world'
 
 template = '''
-	<circle class='stop' ng-attr-r='{{vm.radius}}'></circle>
+	<circle class='stop' ng-attr-r='{{vm.radius}}'>
+		</circle>
 	<text class='bus-icon' y ='-2'>
 		&#xf207;
 	</text>
 	<text class='bus-label' y='8'>STOP</text>
-	</foreignObject>
 	<g class='g-pax'></g>
 '''
+
 der = ()->
 	directive = 
 		template: template
 		controllerAs: 'vm'
+		templateNamespace: 'svg'
 		bindToController: true
 		scope: 
 			data: '=stopDer'
@@ -25,9 +27,6 @@ der = ()->
 			d3.select(el[0]).attr 'class', 'stop-'+ vm.data.n
 
 			update = (newVal, oldVal)->
-
-
-
 				circles = g.selectAll 'circle.pax'
 					.data vm.queue, (d)-> d.id
 

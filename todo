@@ -1,8 +1,15 @@
+TOOLTIP DIRECTIVE
 
 
 
+
+
+make the plot directive not actually located in the svg, but rather have it append something to the body
 
 TODO
+
+rename 
+
 get rid of simulation speed
 fix how the line slide left
 
@@ -14,9 +21,6 @@ make some div pop up above the charts
 style hte play and pause button (make into one button?)
 
 PLOT MOVING AVERAGE WAITING TIME, TRAVEL TIME, DOOR-TO-DOOR TIME
-
-STATION PLOT
-plot 
 
 TODAY
 instead of using the timer, try 
@@ -30,6 +34,7 @@ bus tooltip
 
 LONG TERM
 reset button
+redo the shifter directive
 
 
 IAN'S NOTES

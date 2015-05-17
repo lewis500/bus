@@ -27,12 +27,12 @@ class cumCtrl extends plotCtrl
 	constructor: (@scope, @element)->
 		super(@scope, @element)
 
-		@data = Data.stops[0].history
+		# @data = @stop.history
 
 		cumArea = d3.select(@element[0]).select 'path.cumulative-area'
-			.datum @data
+			.datum @stop.history
 		cumLine = d3.select(@element[0]).select 'path.cumulative-line'
-			.datum @data
+			.datum @stop.history
 
 		@lineFun = d3.svg.line()
 			.interpolate 'monotone'
@@ -73,7 +73,8 @@ class cumCtrl extends plotCtrl
 der = ()->
 	directive = 
 		controllerAs: 'vm'
-		scope: {} # data: '=stop'
+		scope: 
+			stop: '=cumChart'
 		template: template
 		bindToController: true
 		templateNamespace: 'svg'
