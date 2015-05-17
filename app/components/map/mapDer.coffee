@@ -2,47 +2,58 @@ angular = require 'angular'
 World = require '../../services/world'
 Data = require '../../services/data'
 textures = require 'textures'
-
+_ = require 'lodash'
 template = """
 	<svg ng-init='vm.resize()' ng-attr-height='{{vm.height + vm.mar.top + vm.mar.bottom}}'>
 		<g class='g-main' shifter='{{::[vm.mar.left, vm.mar.top]}}'>
 			<path class='road' stroke-linejoin="round"  stroke='{{vm.texture.url()}}' ng-attr-d='{{vm.lineFun(vm.road_data)}}z'/>
-			<path class='stripe' ng-attr-d='{{vm.lineFun(vm.road_data)}}z'/>
-			<g class='g-stops'>
-				<g ng-repeat='stop in vm.stops' ng-attr-transform='{{vm.place_stop(stop)}}'>
-					<g stop-der=stop></g>
-				</g>
-			</g>
 			<g class='g-buses'>
 				<g ng-repeat='bus in vm.buses' ng-attr-transform='{{vm.place_bus(bus)}}' bus-der data=bus></g>
 			</g>
 		</g>
 	</svg>
 """
+			# <path class='stripe' ng-attr-d='{{vm.lineFun(vm.road_data)}}z'/>
+			# <g class='g-stops'>
+			# 	<g ng-repeat='stop in vm.stops' ng-attr-transform='{{vm.place_stop(stop)}}'>
+			# 		<g stop-der=stop></g>
+			# 	</g>
+			# </g>
+
 class MapCtrl
 	constructor: (@scope, @element, @window) ->
+		calcRoadStuff = ()=>
+			r = d3.select 'path.target_road'
+				.node()
+			length = r.getTotalLength()
+			# a = r.getBBox()
+			_.range 0, length , length/500
+				.map (t)=> 
+					p = r.getPointAtLength(t)
+					res = 
+						x: (p.x - 568)/747 * 100
+						y: (p.y - 76)/760 * 100
+
+		d3.xml "styles/picture.svg", "image/svg+xml", (xml)=>
+			d3.select @element[0]
+			  	.node()
+				.appendChild(xml.documentElement)
+
+			@road_data = calcRoadStuff()
+			console.log 'finished'
+
+		@road_data = []
+
 		@mar = {left: 60, right: 60, top: 60, bottom: 60}
-		@aspectRatio = .52
+		@aspectRatio = 760/747
 		@buses = Data.buses
 		@stops = Data.stops
 		@road = d3.select @element[0]
 			.select 'path.road'
 			.node()
 
-		@texture = textures
-			.paths()
-		    .d "woven"
-		    .size 1.7
-		    .strokeWidth .7
-		    .stroke '#514A53'
-
-		d3.select @element[0]
-			.select 'svg'
-			.call @texture
-
 		@Y = d3.scale.linear().domain [0,100]
-		@X = @Y.copy()
-		@road_data = [ [54, 100], [54, 50], [100, 50], [100, 0], [0, 0], [0,100]].map (d)-> {x: d[0], y: d[1]}
+		@X = d3.scale.linear().domain [0,100]
 
 		@lineFun = d3.svg.line()
 			.x (d)-> @X d.x
@@ -51,21 +62,11 @@ class MapCtrl
 		angular.element @window 
 			.on 'resize' , ()=> @resize()
 
-	mouseover: (event)->
-		h = angular.element(@element[0])[0]
-			.getBoundingClientRect()
-		g = event.target.getBoundingClientRect()
-		d3.select(@element[0])
-			.select '#test'
-			.style
-				left: g.left - h.left
-				top: g.top - h.top
-
 	resize: ()->
 		@width = @element[0].clientWidth - @mar.left - @mar.right
 		@height = @width * @aspectRatio
 		@road_length = @road.getTotalLength()
-		@Y.range [@height, 0]
+		@Y.range [0, @height]
 		@X.range [0, @width]
 		@scope.$evalAsync()
 

@@ -42,7 +42,9 @@ div.cum-chart{
 
 div[map-der] svg{
   width: 100%;
-
+  position: absolute;
+  left: 0px;
+  top: 0px;
 }
 
 cum-chart svg{
@@ -140,8 +142,9 @@ line, path{
 }
 
 path.road{
-    stroke-width: 50px;
+    stroke-width: 15px;
     fill: none;
+    stroke: #ccc;
     stroke-linejoin: round;
     pointer-events: auto;
 }
