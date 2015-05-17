@@ -28,8 +28,6 @@ der = ()->
 				yAxisFun.tickSize -vm.width
 				sel.call yAxisFun
 
-			update()
-				
 			scope.$watch 'vm.scale.domain()', update , true
 
 			angular.element window

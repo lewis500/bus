@@ -6,27 +6,18 @@ have the history start out with something so you don't get those errors are firs
 
 
 
-get rid of simulation speed
-fix how the line slide left
-
 
 SHORT TERM
-make some div pop up above the charts
+get rid of simulation speed
+no pointer events on the plots themselves
 
 
-style hte play and pause button (make into one button?)
-
-PLOT MOVING AVERAGE WAITING TIME, TRAVEL TIME, DOOR-TO-DOOR TIME
-
-TODAY
-instead of using the timer, try 
-
-insted of having them start at stops, havee them start random places.
 
 
-TODAY
-stop tooltip
-bus tooltip
+MED TERM
+fix the animation on the alighting pax leaving
+
+
 
 LONG TERM
 reset button

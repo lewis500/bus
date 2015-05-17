@@ -69,20 +69,20 @@ der = ()->
 					.transition 'grow'
 					.ease 'cubic-out'
 					.delay 10
-					.duration 150 * World.scale
+					.duration 150 
 					.attr 'r' , 2 
 					.transition 'snapback'
-					.duration 50 * World.scale
+					.duration 50 
 					.ease 'cubic'
 					.attr 'r', 1.5
 
 				circles.exit()
 					.transition 'leave'
-					.duration 50 * World.scale
+					.duration 50 
 					.ease 'cubic-out'
 					.attr 'r', 2
 					.transition()
-					.duration 100 * World.scale
+					.duration 100 
 					.ease 'cubic-in'
 					.attr 'r', 0 
 					.each (d)-> d.spot.filled = false
