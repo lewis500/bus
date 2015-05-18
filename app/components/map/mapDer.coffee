@@ -3,71 +3,45 @@ World = require '../../services/world'
 Data = require '../../services/data'
 textures = require 'textures'
 _ = require 'lodash'
-template = """
-	<svg ng-init='vm.resize()' ng-attr-height='{{vm.height + vm.mar.top + vm.mar.bottom}}'>
-		<g class='g-main' shifter='{{::[vm.mar.left, vm.mar.top]}}'>
-			<path class='road' stroke-linejoin="round"  stroke='{{vm.texture.url()}}' ng-attr-d='{{vm.lineFun(vm.road_data)}}z'/>
-			<g class='g-buses'>
-				<g ng-repeat='bus in vm.buses' ng-attr-transform='{{vm.place_bus(bus)}}' bus-der data=bus></g>
-			</g>
-		</g>
-	</svg>
-"""
-			# <path class='stripe' ng-attr-d='{{vm.lineFun(vm.road_data)}}z'/>
+# template = """
+# 	<svg ng-attr-height='{{vm.height}}'>
+# 		<g class='g-main'>
+# 			<path class='road' stroke-linejoin="round"  stroke='{{vm.texture.url()}}' ng-attr-d='{{vm.lineFun(vm.road_data)}}z'/>
+# 			<g class='g-buses'>
+# 				<g ng-repeat='bus in vm.buses' ng-attr-transform='{{vm.place_bus(bus)}}' bus-der data=bus></g>
+# 			</g>
+# 		</g>
+# 	</svg>
+# """
 			# <g class='g-stops'>
 			# 	<g ng-repeat='stop in vm.stops' ng-attr-transform='{{vm.place_stop(stop)}}'>
 			# 		<g stop-der=stop></g>
 			# 	</g>
 			# </g>
+			# <path class='stripe' ng-attr-d='{{vm.lineFun(vm.road_data)}}z'/>
 
 class MapCtrl
 	constructor: (@scope, @element, @window) ->
-		calcRoadStuff = ()=>
-			r = d3.select 'path.target_road'
-				.node()
-			length = r.getTotalLength()
-			# a = r.getBBox()
-			_.range 0, length , length/500
-				.map (t)=> 
-					p = r.getPointAtLength(t)
-					res = 
-						x: (p.x - 568)/747 * 100
-						y: (p.y - 76)/760 * 100
-
-		d3.xml "styles/picture.svg", "image/svg+xml", (xml)=>
-			d3.select @element[0]
-			  	.node()
-				.appendChild(xml.documentElement)
-
-			@road_data = calcRoadStuff()
-			console.log 'finished'
-
-		@road_data = []
-
-		@mar = {left: 60, right: 60, top: 60, bottom: 60}
-		@aspectRatio = 760/747
-		@buses = Data.buses
-		@stops = Data.stops
-		@road = d3.select @element[0]
-			.select 'path.road'
+		sel =  d3.select @element[0]
+		@road = sel.select 'path.target_road'
 			.node()
 
-		@Y = d3.scale.linear().domain [0,100]
-		@X = d3.scale.linear().domain [0,100]
+		@CH = sel.node().clientHeight
+		@CW = sel.node().clientWidth
+		@aspectRatio = @CH/@CW
 
-		@lineFun = d3.svg.line()
-			.x (d)-> @X d.x
-			.y (d)-> @Y d.y
+		@buses = Data.buses
+		@stops = Data.stops
+
+
+		@aspectRatio = 760.76667/747.0819
 
 		angular.element @window 
 			.on 'resize' , ()=> @resize()
 
 	resize: ()->
-		@width = @element[0].clientWidth - @mar.left - @mar.right
+		@width = @element[0].clientWidth
 		@height = @width * @aspectRatio
-		@road_length = @road.getTotalLength()
-		@Y.range [0, @height]
-		@X.range [0, @width]
 		@scope.$evalAsync()
 
 	place_bus: (d)->
@@ -90,15 +64,12 @@ class MapCtrl
 
 der = ()->
 	directive = 
-		template: template
+		templateUrl: './styles/picture.svg'
 		controller: ['$scope','$element','$window', MapCtrl]
 		restrict: 'A'
 		bindToController: true
 		controllerAs: 'vm'
 		templateNamespace: 'svg'
-		link: (scope, el, attr)->
-			d3.select(el[0])
-				.select '.road'
 		scope: {}
 
 module.exports = der
