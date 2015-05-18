@@ -143,30 +143,22 @@ line, path{
 	pointer-events: none;
 }
 
-path.road{
-    stroke-width: 15px;
-    fill: none;
-    stroke: #ccc;
-    stroke-linejoin: round;
-    pointer-events: auto;
-}
-
-path.stripe{
-    stroke: @clr-yellow-300;
-    opacity: .6;
-    fill: none;
-    stroke-width: 2px;
-    stroke-dasharray: 8, 8;
-    stroke-linecap: round;
-}
-
 rect.bus {
-    stroke: @clr-light-blue-300;
-    fill: white;
+    stroke: @clr-grey-100;
+    fill: black;
     stroke-linejoin: round;
     cursor: pointer;
     stroke-linecap: round;
-    // filter: url(#f2);
+    transition: fill .3s ease-in-out;
+}
+
+rect.bus.held{
+  fill: white;
+  transition: fill .3s ease-in-out;
+}
+
+path.target_road{
+  stroke:@clr-grey-600;
 }
 
 
@@ -248,4 +240,15 @@ div.row{
 
 div.row .icon-bus{
   font-size: 18px;
+}
+
+
+div.row.hilited{
+  // border: solid @clr-grey-300 2px;
+  // transition: all .3s ease-in-out;
+  background-color: @clr-grey-100;
+}
+div.row.held {
+  background-color: @clr-grey-200;
+  transition: all .2s ease-in-out;
 }

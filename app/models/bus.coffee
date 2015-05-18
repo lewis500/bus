@@ -12,7 +12,8 @@ class Bus
 		@next_stop = undefined
 		@delay_timeout = undefined
 		@hilited = false
-
+		@held = false
+		
 	set_next_bus: (bus)-> @next_bus = bus
 	set_next_stop: (stop)-> @next_stop = stop
 
@@ -30,12 +31,15 @@ class Bus
 	hilite: (v)-> 
 		@hilited = v
 
-	delay: ->
-		@stopped = true
-		clearInterval(@delay_timeout)
-		@delay_timeout = setTimeout(=> 
-			@stopped = false
-		, World.delay)
+	hold:(v)->
+		@held = v
+
+	# delay: ->
+	# 	@stopped = true
+	# 	clearInterval(@delay_timeout)
+	# 	@delay_timeout = setTimeout(=> 
+	# 		@stopped = false
+	# 	, World.delay)
 
 	release:() -> @stopped = false
 
@@ -45,7 +49,7 @@ class Bus
 		@next_stop.halt(this)
 
 	tick: (dt)->
-		if not (@stopped)
+		if not (@stopped or @held)
 			gap = @gap
 			move = (dt * World.bus_velocity)
 			if gap <= move

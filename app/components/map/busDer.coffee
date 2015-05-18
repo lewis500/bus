@@ -26,34 +26,22 @@ der = ()->
 			scope.$watch 'vm.data.hilited', (v)->
 				if v
 					rect.transition()
-						.duration 500
-						.ease 'cubic-out'
-						.attr 'stroke-width', 6
-						.transition('something')
-						.duration 300
-						.ease 'cubic-out'
+						.duration 400
+						.ease 'bounce-in'
 						.attr 'stroke-width', 4
+						.transition('something')
+						.duration 200
+						.ease 'cubic-in'
+						.attr 'stroke-width', 2
 				else 
 					rect.transition()
-						.duration 100
+						.duration 175
 						.ease 'cubic'
 						.attr
 							'stroke-width': 0
 
-
-			# sel.on 'click', ()-> 
-			# 		vm.data.delay()
-			# 		sel.transition()
-			# 			.duration 100
-			# 			.ease 'cubic'
-			# 			.attr 
-			# 				'stroke': '#4EA198'
-			# 				'stroke-width': 3
-			# 			.transition()
-			# 			.delay World.delay - 100
-			# 			.duration 200
-			# 			.ease 'back'
-			# 			.attr 'stroke-width': 0
+			scope.$watch 'vm.data.held', (v)->
+					rect.classed 'held' , v
 
 			g = d3.select(el[0]).select('g.g-pax')
 
