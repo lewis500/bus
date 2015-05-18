@@ -21,6 +21,26 @@ der = ()->
 			@queue = @data.queue
 		link: (scope, el, attr, vm)->
 			sel = d3. select el[0]
+			rect = sel.select '.bus'
+
+			scope.$watch 'vm.data.hilited', (v)->
+				if v
+					rect.transition()
+						.duration 500
+						.ease 'cubic-out'
+						.attr 'stroke-width', 6
+						.transition('something')
+						.duration 300
+						.ease 'cubic-out'
+						.attr 'stroke-width', 4
+				else 
+					rect.transition()
+						.duration 100
+						.ease 'cubic'
+						.attr
+							'stroke-width': 0
+
+
 			# sel.on 'click', ()-> 
 			# 		vm.data.delay()
 			# 		sel.transition()

@@ -11,6 +11,7 @@ class Bus
 		@next_bus = undefined
 		@next_stop = undefined
 		@delay_timeout = undefined
+		@hilited = false
 
 	set_next_bus: (bus)-> @next_bus = bus
 	set_next_stop: (stop)-> @next_stop = stop
@@ -25,6 +26,9 @@ class Bus
 		l1 - World.space
 
 	@property 'location', get: -> @position % World.road_length
+
+	hilite: (v)-> 
+		@hilited = v
 
 	delay: ->
 		@stopped = true

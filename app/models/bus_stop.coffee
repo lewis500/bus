@@ -11,7 +11,7 @@ class BusStop
 					@history.push 
 						count: @boarding_paxes.length
 						time: World.time
-					if (World.time - @history[0].time) > 30000 then @history.shift()
+					if (World.time - @history[0].time) > (World.max_history*1000 )then @history.shift()
 				, 80
 
 	set_next: (stop)->

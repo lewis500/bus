@@ -1,5 +1,4 @@
 _ = require 'lodash'
-plotCtrl = require '../../services/plotCtrl'
 World = require '../../services/world'
 d3 = require 'd3'
 
@@ -24,11 +23,22 @@ template = '''
 	</div>
 '''
 
-class cumCtrl extends plotCtrl
+class cumCtrl
 	constructor: (@scope, @element)->
-		super(@scope, @element)
+		@Y = d3.scale.linear().domain([0,8])
+		@X = d3.scale.linear().domain([0,World.max_history])
+		@ID = _.uniqueId 'chart-'
+		@mar = 
+			left: 14
+			top: 16
+			right: 5
+			bottom: 14
 
 		sel = d3.select @element[0]
+
+		@el = sel
+			.select 'div'
+			.node()
 
 		@cumArea = sel
 			.select 'path.cumulative-area'
@@ -38,8 +48,6 @@ class cumCtrl extends plotCtrl
 		@cumLine = sel
 			.select 'path.cumulative-line'
 			.datum @stop.history
-
-		@ID = _.uniqueId 'chart'
 
 		@scope.$watch => 
 						@stop.history.slice(-1)[0]?.time
@@ -56,7 +64,15 @@ class cumCtrl extends plotCtrl
 			.y (d)=> @Y d.count
 			.x (d)=> @X(World.max_history - (World.time - d.time)/1000)
 
-		@X.domain [0, World.max_history]
+		angular.element(window).on('resize', @resize)
+		
+
+	resize: ()=>
+		@width = @el.clientWidth - @mar.left - @mar.right
+		@height = @el.clientHeight - @mar.top - @mar.bottom
+		@Y.range([@height, 0])
+		@X.range([0, @width])
+		@scope.$evalAsync()
 
 	update: =>
 		max = d3.max @stop.history, (d)-> 
