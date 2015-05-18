@@ -1,31 +1,25 @@
+<<<<<<< HEAD
 TODO
 get rid of simulation speed
 
 
+=======
+>>>>>>> scheme
 SHORT TERM
-make some div pop up above the charts
+move play button
+
+MED TERM
+style the bus stops
+style the buses themselves
+add the left bar
+style the plots
 
 
-style hte play and pause button (make into one button?)
-
-PLOT MOVING AVERAGE WAITING TIME, TRAVEL TIME, DOOR-TO-DOOR TIME
-
-STATION PLOT
-plot 
-
-TODAY
-instead of using the timer, try 
-
-insted of having them start at stops, havee them start random places.
-
-
-TODAY
-stop tooltip
-bus tooltip
 
 LONG TERM
 reset button
-
+redo the shifter directive
+make a thing to long out the positions
 
 IAN'S NOTES
 selector gorup around bus
