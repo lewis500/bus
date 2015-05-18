@@ -2,11 +2,15 @@
 MED TERM
 add a reset button
 make the stop get hilited when it's boarding passengers
+style the play button for hoever, etc.
+add margins around the buses
 
 LONG TERM
 reset button
 redo the shifter directive
 make a thing to long out the positions
+improve performance
+bring in the svg filters with an ng-include
 
 IAN'S NOTES
 selector gorup around bus

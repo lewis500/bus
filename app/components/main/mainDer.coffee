@@ -6,8 +6,8 @@ timeout = require( '../../helpers').timeout
 World = require '../../services/world'
 template = '''
 	<div id='top'>
-	  	<h2>Why do buses bunch up?</h2>
-		<p>Click a bus to force it to brake. After a while, they'll bunch up.</p>
+	  	<h2>Bus bunching</h2>
+		<p>Click and hold a bus below to stop it. Even just a brief halt will cause the buses to bunch up after a while.</p>
 		<div layout='row' layout-align='start center'>
 			<div flex='25'>
 				<div class='button' ng-click='vm.rootScope.paused ? vm.play() : vm.pause()'>{{vm.rootScope.paused ? 'Play' : 'Pause'}}</div>
