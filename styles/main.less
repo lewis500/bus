@@ -9,17 +9,16 @@
 	src: url("font/AmbassadorPlusSans-Thin.otf") format("opentype");
 }
 
-
 body {
     font-family:'Roboto', sans-serif;
+    padding-top: 30px;
     padding-bottom: 150px;
-    // padding-top: 5px;
     font-size: 15px;
     background-color: rgb(175,193,197)
 }
 
 div[cum-chart] {
-  padding: 10px;
+  padding: 6px;
   position: absolute;
   border-radius: 2px;
   z-index: 5;
@@ -36,7 +35,7 @@ div[cum-chart].show{
 }
 
 div.cum-chart{
-  width: 150px;
+  width: 130px;
   height: 110px;
 }
 
@@ -79,9 +78,9 @@ h1,h2,h3,h4{
 }
 
 #content{
-	width: 90%;
+	width: 80%;
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 5px;
 }
 
 #toolbar{
@@ -92,12 +91,22 @@ h1,h2,h3,h4{
 }
 
 #left {
-    color: @clr-grey-100;
-    background-color: @clr-indigo-500;
     border-radius: 2.8px;
     box-shadow: 1px 1px 2px rgba(0,0,0,.4);
-    padding: 20px;
 }
+
+#left #top {
+    padding: 20px;
+    color: @clr-grey-100;
+    background-color: @clr-indigo-500;
+}
+
+#left #bottom{
+  // padding: 20px;
+  color: @clr-grey-700;
+  background-color: white;
+}
+
 
 #why p{
     color: white;
@@ -112,8 +121,6 @@ text.bus-icon{
     dominant-baseline: central;
 }
 
-
-// text.bus-icon
 
 // STOP COLORING
 .stop-1{
@@ -177,18 +184,22 @@ circle.pax{
 
 
 .axis g.tick text{
-  font-size: 12px;
+  font-size: 10px;
   // font-family: 
   font-weight: 300;
 }
 
  text.axis-label{
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 text.axis-label.time{
   text-anchor: end;
+}
+text.axis-label.count{
+  font-size: 15px;
+  text-anchor: middle;
 }
 
 .axis g.tick line {
@@ -196,19 +207,19 @@ text.axis-label.time{
     stroke-dasharray: 1, 1.5;
 }
 
+.x-zero{
+  stroke-width: 1px;
+  stroke: @clr-grey-500;
+}
+
 rect.background{
-    // fill: #fff;
     fill: none;
 }
 
-// .axis g.tick:nth-last-child(2) {
-//     display: none;
-// }
-
-
 .axis g.tick:first-child line{
     stroke-dasharray: none;
-    stroke-width: 1px;
+    stroke: @clr-grey-300;
+    stroke-width: 1.3px;
 }
 
 .axis path.domain {
@@ -222,7 +233,16 @@ path.cumulative-line{
 }
 
 path.cumulative-area{
-  // fill: @clr-pink-800;
-  // fill-opacity: 0.3;
   stroke: none;
+}
+
+div.row{
+  border-bottom: solid @clr-grey-300 1px;
+  padding: 20px;
+  cursor: pointer;
+  // pointer: cursor;
+}
+
+div.row .icon-bus{
+  font-size: 18px;
 }

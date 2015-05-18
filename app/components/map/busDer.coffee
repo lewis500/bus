@@ -21,19 +21,19 @@ der = ()->
 			@queue = @data.queue
 		link: (scope, el, attr, vm)->
 			sel = d3. select el[0]
-			sel.on 'click', ()-> 
-					vm.data.delay()
-					sel.transition()
-						.duration 100
-						.ease 'cubic'
-						.attr 
-							'stroke': '#4EA198'
-							'stroke-width': 3
-						.transition()
-						.delay World.delay - 100
-						.duration 200
-						.ease 'back'
-						.attr 'stroke-width': 0
+			# sel.on 'click', ()-> 
+			# 		vm.data.delay()
+			# 		sel.transition()
+			# 			.duration 100
+			# 			.ease 'cubic'
+			# 			.attr 
+			# 				'stroke': '#4EA198'
+			# 				'stroke-width': 3
+			# 			.transition()
+			# 			.delay World.delay - 100
+			# 			.duration 200
+			# 			.ease 'back'
+			# 			.attr 'stroke-width': 0
 
 			g = d3.select(el[0]).select('g.g-pax')
 

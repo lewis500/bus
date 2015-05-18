@@ -11,6 +11,7 @@ cumChart = require './components/cumulative/cumChart'
 exAxis = require './directives/xAxis'
 yAxis = require './directives/yAxis'
 lineDer = require './directives/line'
+rowDer = require './components/main/rowDer'
 
 app = angular.module('mainApp', [])
 	.directive 'mainDer', mainDer
@@ -23,3 +24,4 @@ app = angular.module('mainApp', [])
 	.directive 'exAxis', exAxis
 	.directive 'yAxis' , yAxis
 	.directive 'lineDer', lineDer
+	.directive 'rowDer', rowDer

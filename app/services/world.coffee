@@ -8,7 +8,7 @@ class World
 		@num_buses= 2
 		@num_stops= 4
 		@delay = 1000
-		@space= 4
+		@space= 2.5
 		@time = 0
 		@bus_velocity= 27/1000
 		@board_time = 180

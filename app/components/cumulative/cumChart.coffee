@@ -12,9 +12,10 @@ template = '''
 				</clippath>
 			</defs>
 			<g shifter='{{[vm.mar.left, vm.mar.top]}}'>
-				<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'/>
+				<text class='axis-label count' ng-attr-x='{{vm.width/2}}' y='-5px'>Pax Waiting</text>
 				<g y-axis scale='vm.Y' width='vm.width'></g>
 				<text class='axis-label time' shifter='{{[vm.width, vm.height]}}'  dy='1em'>time</text>
+				<line class='x-zero' ng-attr-y2='{{vm.height}}'></line>
 			</g>
 			<g clip-path="url(#{{::vm.ID}})" shifter='{{::[vm.mar.left, vm.mar.top]}}'>
 				<path class='cumulative-area'/>

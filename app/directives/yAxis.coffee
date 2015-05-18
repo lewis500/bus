@@ -15,7 +15,7 @@ der = ()->
 		link: (scope, el, attr, vm)->
 			yAxisFun = d3.svg.axis()
 				.scale vm.scale
-				.ticks 5
+				.ticks 8
 				.orient 'left'
 
 			sel = d3.select el[0]

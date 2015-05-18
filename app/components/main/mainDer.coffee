@@ -5,10 +5,17 @@ Data = require '../../services/data'
 timeout = require( '../../helpers').timeout
 World = require '../../services/world'
 template = '''
-	<div layout='row' layout-align='start center'>
-		<div flex='25'>
-			<div class='button' ng-click='vm.rootScope.paused ? vm.play() : vm.pause()'>{{vm.rootScope.paused ? 'Play' : 'Pause'}}</div>
+	<div id='top'>
+	  	<h2>Why do buses bunch up?</h2>
+		<p>Click a bus to force it to brake. After a while, they'll bunch up.</p>
+		<div layout='row' layout-align='start center'>
+			<div flex='25'>
+				<div class='button' ng-click='vm.rootScope.paused ? vm.play() : vm.pause()'>{{vm.rootScope.paused ? 'Play' : 'Pause'}}</div>
+			</div>
 		</div>
+	</div>
+	<div layout='column' id='bottom'>
+		<row-der ng-repeat='bus in vm.buses' bus=bus />
 	</div>
 	<div cum-chart ng-repeat='lew in vm.stops' stop=lew ng-style='{left: lew.loc.left - 65, top: lew.loc.top - 100}' ng-class='{show: lew.show}'></div>
 '''
@@ -18,6 +25,7 @@ class ButtonCtrl
 		@pause()
 		@adding = false
 		@World = World
+		@buses = Data.buses
 		@stops = Data.stops
 
 	add_pax: ->

@@ -5,8 +5,8 @@ class Controller
 		@Y = d3.scale.linear().domain([0,8])
 		@X = d3.scale.linear().domain([0,8])
 		@mar = 
-			left: 15
-			top: 5
+			left: 14
+			top: 16
 			right: 5
 			bottom: 14
 		@el = d3.select @element[0] 
