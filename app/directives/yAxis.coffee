@@ -28,7 +28,9 @@ der = ()->
 				yAxisFun.tickSize -vm.width
 				sel.call yAxisFun
 
-			scope.$watch 'vm.scale.domain()', update , true
+			scope.$watch ()->
+					d3.sum(vm.scale.domain())
+				, update , true
 
 			angular.element window
 				.on 'resize', update

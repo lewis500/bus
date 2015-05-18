@@ -59,7 +59,7 @@ der = ()->
 							spot = _.find places, (v)-> !v.filled 
 							d.spot = spot
 							spot.filled = true
-							x =  30 - spot.row * 3.2
+							x =  30 - spot.row * 3
 							y = spot.col * 6
 							"translate( #{x}, #{y} )"
 						class: (d,i)->'pax stop-' + d.destination.n

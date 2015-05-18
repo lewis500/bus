@@ -2,10 +2,7 @@ World = require '../services/world'
 
 template = '''
 	<circle class='stop' r='22' ng-init='vm.resizer()'></circle>
-	<text class='bus-icon' y ='-2'>
-		&#xf207;
-	</text>
-	<text class='bus-label' y='8'>STOP</text>
+	<text class='bus-icon'>G</text>
 	<g class='g-pax'></g>
 '''
 

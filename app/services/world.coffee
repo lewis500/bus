@@ -13,7 +13,7 @@ class World
 		@bus_velocity= 27/1000
 		@board_time = 180
 		@alight_time = 130
-		@add_time= 1000
+		@add_time= 1200
 	increment: (dt)->
 		@time += dt
 

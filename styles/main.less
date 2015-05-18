@@ -1,5 +1,5 @@
 @import "../bower_components/material-color/material-color";
-
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
 @font-face {
 	font-family: AmLight;
 	src: url("font/AmbassadorPlusSans-Light.otf") format("opentype");
@@ -9,8 +9,9 @@
 	src: url("font/AmbassadorPlusSans-Thin.otf") format("opentype");
 }
 
+
 body {
-    font-family:'PT Sans', sans-serif;
+    font-family:'Roboto', sans-serif;
     padding-bottom: 150px;
     // padding-top: 5px;
     font-size: 15px;
@@ -36,7 +37,7 @@ div[cum-chart].show{
 
 div.cum-chart{
   width: 150px;
-  height: 85px;
+  height: 110px;
 }
 
 
@@ -53,13 +54,10 @@ cum-chart svg{
 
 .button {
   display: inline-block;
-  // background-color: #4EA198;
   color: white;
   padding: 6px 12px;
   margin-bottom: 0;
   font-size: 14px;
-  // font-weight: bold;
-  // font-family: AmLight;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -101,8 +99,6 @@ h1,h2,h3,h4{
     padding: 20px;
 }
 
-
-
 #why p{
     color: white;
     margin: 0px;
@@ -110,19 +106,12 @@ h1,h2,h3,h4{
 }
 
 text.bus-icon{
-    font-family: 'FontAwesome';
-    font-size: .8em;
-    // fill: @clr-grey-600;
+    font-family: 'Glyphter';
+    font-size: 1.2em;
     text-anchor: middle;
     dominant-baseline: central;
 }
 
-text.bus-label{
-  font-family: AmLight;
-  font-size: 8px;
-  text-anchor: middle;
-  dominant-baseline: central;
-}
 
 // text.bus-icon
 
@@ -182,15 +171,29 @@ circle.pax{
 
 .axis path, .axis line {
     fill: none;
-    stroke: @clr-grey-300;
+    stroke: @clr-grey-200;
     shape-rendering: crispEdges;
+}
+
+
+.axis g.tick text{
+  font-size: 12px;
+  // font-family: 
+  font-weight: 300;
+}
+
+ text.axis-label{
+  font-size: 12px;
+  font-weight: 400;
+}
+
+text.axis-label.time{
+  text-anchor: end;
 }
 
 .axis g.tick line {
     stroke-width: 1px;
-    stroke-dasharray: 2, 2;
-    stroke-linecap: round;
-    opacity: .9;
+    stroke-dasharray: 1, 1.5;
 }
 
 rect.background{
@@ -198,14 +201,14 @@ rect.background{
     fill: none;
 }
 
-.axis g.tick:nth-last-child(2) {
-    display: none;
-}
+// .axis g.tick:nth-last-child(2) {
+//     display: none;
+// }
 
 
 .axis g.tick:first-child line{
     stroke-dasharray: none;
-    stroke-width: 2px;
+    stroke-width: 1px;
 }
 
 .axis path.domain {
@@ -219,7 +222,7 @@ path.cumulative-line{
 }
 
 path.cumulative-area{
-  fill: @clr-pink-800;
-  fill-opacity: 0.3;
+  // fill: @clr-pink-800;
+  // fill-opacity: 0.3;
   stroke: none;
 }

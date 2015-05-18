@@ -8,7 +8,7 @@ class Controller
 			left: 15
 			top: 5
 			right: 5
-			bottom: 8
+			bottom: 14
 		@el = d3.select @element[0] 
 			.select 'div'
 			.node()

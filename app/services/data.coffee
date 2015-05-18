@@ -6,13 +6,16 @@ _ = require 'lodash'
 
 class Data
 	constructor: ()->
+
 		@reset()
 
 	reset:->
 		# create stops
+		SL = [[4, false], [29,true], [56, true], [79,false]]
+
 		@stops = [1..World.num_stops].map (n)->
-			position = (World.road_length * n / World.num_stops  + 20)%World.road_length
-			newStop = new BusStop(n, position)
+			p = SL[n-1]
+			newStop = new BusStop n, p[0], p[1] 
 
 		@stops.forEach (stop, i,k)->
 			stop.set_next if k[i+1] then k[i+1] else k[0]

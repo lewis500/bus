@@ -14,6 +14,7 @@ template = '''
 			<g shifter='{{[vm.mar.left, vm.mar.top]}}'>
 				<rect class='background' ng-attr-width='{{vm.width}}' ng-attr-height='{{vm.height}}'/>
 				<g y-axis scale='vm.Y' width='vm.width'></g>
+				<text class='axis-label time' shifter='{{[vm.width, vm.height]}}'  dy='1em'>time</text>
 			</g>
 			<g clip-path="url(#{{::vm.ID}})" shifter='{{::[vm.mar.left, vm.mar.top]}}'>
 				<path class='cumulative-area'/>
@@ -21,7 +22,6 @@ template = '''
 		</svg>
 	</div>
 '''
-				# <path class='cumulative-line'/>
 
 class cumCtrl extends plotCtrl
 	constructor: (@scope, @element)->
@@ -31,6 +31,7 @@ class cumCtrl extends plotCtrl
 
 		@cumArea = sel
 			.select 'path.cumulative-area'
+			.classed 'stop-' + @stop.n , true
 			.datum @stop.history
 
 		@cumLine = sel
@@ -38,9 +39,6 @@ class cumCtrl extends plotCtrl
 			.datum @stop.history
 
 		@ID = _.uniqueId 'chart'
-
-		@X.domain [0,World.max_history]
-		@Y.domain [0, 8 ]
 
 		@scope.$watch => 
 						@stop.history.slice(-1)[0]?.time
@@ -57,10 +55,12 @@ class cumCtrl extends plotCtrl
 			.y (d)=> @Y d.count
 			.x (d)=> @X(World.max_history - (World.time - d.time)/1000)
 
+		@X.domain [0, World.max_history]
+
 	update: =>
 		max = d3.max @stop.history, (d)-> 
 			d.count
-		@Y.domain [0, 8 ]
+		@Y.domain [0, Math.max((max ? 0), 8) ]
 
 		@cumArea
 			.attr 'd' , @areaFun

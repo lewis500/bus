@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="styles/flex.css">
   <link rel="stylesheet" href="styles/boilerplate.css">
   <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
-  <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="./styles/glyphter-font/css/Glyphter.css">
   <script src='./dist/less.min.js'></script>
 </head>
 <script src='dist/bundle.js'></script>
@@ -32,18 +32,18 @@
 
   <svg>
     <defs>
-      <filter id="f1" x="-1" y="-1" width="300%" height="300%">
-        <feOffset result="offOut" in="SourceAlpha" dx="1" dy="1.25"/>
-        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1.8" />
+      <filter id="f1" x="0" y="0" width="300%" height="300%">
+        <feOffset result="offOut" in="SourceAlpha" dx="1" dy=".3"/>
+        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
         <feColorMatrix in="blurOut" result="color-out" type="matrix"
              values="0 0 0 0   0
                      0 0 0 0   0 
                      0 0 0 0   0 
-                     0 0 0 0.4 0"/>
+                     0 0 0 0.25 0"/>
         <feBlend in="SourceGraphic" in2="color-out" mode="normal" />
       </filter>
       
-      <filter id="f2"  x="-1" y="-1" width="300%" height="300%">
+      <filter id="f2"  x="0" y="0" width="300%" height="300%">
         <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0"/>
         <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
         <feColorMatrix in="blurOut" result="color-out" type="matrix"

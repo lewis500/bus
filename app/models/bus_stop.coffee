@@ -2,7 +2,7 @@ World = require '../services/world'
 timeout = require( '../helpers').timeout
 _ = require 'lodash'
 class BusStop
-	constructor: (@n, @location)->
+	constructor: (@n, @location,@flipped)->
 		@alighting_paxes = []
 		@boarding_paxes = []
 		@next_stop = undefined
