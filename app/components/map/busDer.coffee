@@ -3,7 +3,7 @@ World = require '../../services/world'
 
 template = '''
 	<g transform='translate(-32,0)'>
-		<rect class='bus' rx='2' ry='2' width='42px' height='16px' y='-8'></rect>
+		<rect class='bus' rx='2' ry='2' width='34px' height='14px' y='-7'></rect>
 		<g class='g-pax' transform='translate(-2,-3)'></g>
 	</g>
 '''
@@ -59,7 +59,7 @@ der = ()->
 							spot = _.find places, (v)-> !v.filled 
 							d.spot = spot
 							spot.filled = true
-							x =  40 - spot.row * 3.5
+							x =  30 - spot.row * 3.2
 							y = spot.col * 6
 							"translate( #{x}, #{y} )"
 						class: (d,i)->'pax stop-' + d.destination.n
@@ -67,11 +67,11 @@ der = ()->
 					.ease 'cubic-out'
 					.delay 10
 					.duration 180 
-					.attr 'r' , 2 
+					.attr 'r' , 1.8 
 					.transition 'shrink'
 					.duration 90 
 					.ease 'cubic'
-					.attr 'r', 1.5
+					.attr 'r', 1.3
 
 				circles.exit()
 					.transition 'leave'
