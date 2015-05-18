@@ -17,11 +17,11 @@ template = '''
 			</g>
 			<g clip-path="url(#{{::vm.ID}})" shifter='{{::[vm.mar.left, vm.mar.top]}}'>
 				<path class='cumulative-area'/>
-				<path class='cumulative-line'/>
 			</g>
 		</svg>
 	</div>
 '''
+				# <path class='cumulative-line'/>
 
 class cumCtrl extends plotCtrl
 	constructor: (@scope, @element)->
