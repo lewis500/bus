@@ -5,6 +5,7 @@ class BusStop
 	constructor: (@n, @location, @flipped)->
 		@alighting_paxes = []
 		@boarding_paxes = []
+		@busy = false
 		@next_stop = undefined
 		@history = []
 		@snapshot = _.throttle =>
@@ -42,11 +43,13 @@ class BusStop
 				, World.board_time
 		else
 			timeout ()=>
+					@busy = false
 					bus.set_next_stop(@next_stop)
 					bus.release()
 				, 50
 
 	halt:(bus)->
+		@busy = true
 		@alighting_paxes = bus.queue.filter (pax)=> pax.destination is this
 		@task(bus)
 

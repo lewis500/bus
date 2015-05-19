@@ -4,7 +4,7 @@ World = require '../../services/world'
 template = '''
 	<g transform='translate(-32,0)'>
 		<rect class='bus' rx='2' ry='2' width='34px' height='14px' y='-7'></rect>
-		<g class='g-pax' transform='translate(-2,-3)'></g>
+		<g class='g-pax' transform='translate(-2,-2.3)'></g>
 	</g>
 '''
 
@@ -87,7 +87,7 @@ der = ()->
 							d.spot = spot
 							spot.filled = true
 							x =  30 - spot.row * 3
-							y = spot.col * 6
+							y = spot.col * 5
 							"translate( #{x}, #{y} )"
 						class: (d,i)->'pax stop-' + d.destination.n
 					.transition 'grow'

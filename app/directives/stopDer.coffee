@@ -9,6 +9,7 @@ template = '''
 class stopDerCtrl
 	constructor: (@scope, @element)->
 			@queue = @data.boarding_paxes
+
 			d3.select @element[0]
 				.on 'mouseover' , =>
 					@data.show = true
@@ -27,6 +28,28 @@ link = (scope, el, attr, vm)->
 				.attr 'class', 'stop-'+vm.data.n
 
 			g = sel.select 'g.g-pax'
+
+			bigCirc = d3.select el[0]
+				.select 'circle.stop'
+
+			scope.$watch 'vm.data.busy', (v)=>
+				if v
+					bigCirc.transition()
+						.duration 180
+						.ease 'cubic'
+						.attr 'r',25.5
+						.transition()
+						.duration 130
+						.attr 'r', 24
+				else 
+					bigCirc.transition()
+						.duration 200
+						.ease 'back'
+						.attr 'r', 21
+						.transition()
+						.duration 125
+						.ease 'cubic-out'
+						.attr 'r',22
 
 			update = (newVal, oldVal)->
 				circles = g.selectAll 'circle.pax'
