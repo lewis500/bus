@@ -4,24 +4,9 @@ d3 = require 'd3'
 Data = require '../../services/data'
 timeout = require( '../../helpers').timeout
 World = require '../../services/world'
-template = '''
-	<div id='top'>
-	  	<h2>Bus bunching</h2>
-		<p>Click and hold a bus below to stop it. Even just a brief halt will cause the buses to bunch up after a while.</p>
-		<div layout='row' layout-align='start center'>
-			<div flex='25'>
-				<div class='button' ng-click='vm.rootScope.paused ? vm.play() : vm.pause()'>{{vm.rootScope.paused ? 'Play' : 'Pause'}}</div>
-			</div>
-		</div>
-	</div>
-	<div layout='column' id='bottom'>
-		<row-der ng-repeat='bus in vm.buses' bus=bus />
-	</div>
-	<div cum-chart ng-repeat='lew in vm.stops' stop=lew ng-style='{left: lew.loc.left - 65, top: lew.loc.top - 100}' ng-class='{show: lew.show}'></div>
-'''
 
 class ButtonCtrl
-	constructor: (@scope, @rootScope)->
+	constructor: (@scope)->
 		@pause()
 		@adding = false
 		@World = World
@@ -30,15 +15,15 @@ class ButtonCtrl
 
 	add_pax: ->
 		@adding = true
-		timeout(=>
-			Data.add_pax()
-			if not @rootScope.paused then @add_pax() else @adding = false
-		, World.add_time)
+		timeout =>
+				Data.add_pax()
+				if not World.paused then @add_pax() else @adding = false
+			, World.add_time
 
 	play: ->
 		@pause()
 		d3.timer.flush()
-		@rootScope.paused = false
+		World.paused = false
 		if not @adding then @add_pax()
 		last = 0
 		d3.timer (elapsed)=> 
@@ -46,15 +31,16 @@ class ButtonCtrl
 			last = elapsed
 			Data.tick(dt)
 			@scope.$evalAsync()
-			@rootScope.paused
+			World.paused
 
-	pause: -> @rootScope.paused = true
+	pause: -> 
+		World.paused = true
 
 der = ()->
 	directive =
-		controller: ['$scope', '$rootScope', ButtonCtrl]
+		controller: ['$scope', ButtonCtrl]
 		controllerAs: 'vm'
-		template: template
+		templateUrl: './app/components/main/main.html'
 		scope: {}
 
 module.exports = der

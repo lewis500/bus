@@ -1,89 +1,90 @@
 @import "../bower_components/material-color/material-color";
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
-@font-face {
-	font-family: AmLight;
-	src: url("font/AmbassadorPlusSans-Light.otf") format("opentype");
-}
-@font-face {
-	font-family: AmThin;
-	src: url("font/AmbassadorPlusSans-Thin.otf") format("opentype");
-}
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300);
 
 body {
-    font-family:'Roboto', sans-serif;
-    padding-top: 30px;
-    padding-bottom: 150px;
-    font-size: 15px;
-    background-color: rgb(175,193,197)
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(175, 193, 197)
+}
+
+p{
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 20px;
 }
 
 div[cum-chart] {
-  padding: 6px;
-  position: absolute;
-  border-radius: 2px;
-  z-index: 5;
-  box-shadow: .5px .5px 2px  rgba(0,0,0, 0.4);
-  background-color: white;
-  opacity: 0;
-  transition: opacity ease-in-out .2s;
-  pointer-events: none;
+    padding: 6px;
+    position: absolute;
+    border-radius: 2px;
+    z-index: 5;
+    box-shadow: .5px .5px 2px rgba(0, 0, 0, 0.4);
+    background-color: white;
+    opacity: 0;
+    transition: opacity ease-in-out .2s;
+    pointer-events: none;
 }
 
-div[cum-chart].show{
-  opacity: 1;
-  transition: opacity ease-in-out .125s;
+a{
+    color: @clr-pink-100;
 }
 
-div.cum-chart{
-  width: 130px;
-  height: 110px;
+div[cum-chart].show {
+    opacity: 1;
+    transition: opacity ease-in-out .125s;
 }
 
-
-div[map-der] svg{
-  width: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
+div.cum-chart {
+    width: 130px;
+    height: 110px;
 }
 
-cum-chart svg{
-  width: 100%;
+div[map-der] svg {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+cum-chart svg {
+    width: 100%;
 }
 
 .button {
-  display: inline-block;
-  color: white;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background-image: none;
-  border: 1px solid  white;
-  border-radius: 16px;
+    display: inline-block;
+    color: white;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid white;
+    border-radius: 16px;
 }
 
-h1,h2,h3,h4{
-    font-weight: normal;
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 100;
 }
 
-#content{
-	width: 80%;
+#content {
     margin-top: 20px;
     margin-left: 5px;
 }
 
-#toolbar{
+#toolbar {
     width: 100%;
     position: absolute;
     height: 50px;
@@ -92,55 +93,54 @@ h1,h2,h3,h4{
 
 #left {
     border-radius: 2.8px;
-    box-shadow: 1px 1px 2px rgba(0,0,0,.4);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
 }
 
 #left #top {
-    padding: 20px;
+    padding: 25px 25px 15px 25px;
     color: @clr-grey-100;
     background-color: @clr-indigo-500;
 }
 
-#left #bottom{
-  // padding: 20px;
-  color: @clr-grey-700;
-  background-color: white;
+#left #bottom {
+    // padding: 20px;
+    color: @clr-grey-700;
+    background-color: white;
 }
 
-
-#why p{
+#why p {
     color: white;
     margin: 0px;
     margin-left: 15px;
 }
 
-text.bus-icon{
+text.bus-icon {
     font-family: 'Glyphter';
     font-size: 1.2em;
     text-anchor: middle;
     dominant-baseline: central;
 }
 
-
 // STOP COLORING
-.stop-1{
+.stop-1 {
     fill: #fea621;
 }
 
-.stop-2{
+.stop-2 {
     fill: #48bdf4;
 }
 
-.stop-3{
+.stop-3 {
     fill: #4f8742;
 }
 
-.stop-4{
+.stop-4 {
     fill: #fd1a16;
 }
 
-line, path{
-	pointer-events: none;
+line,
+path {
+    pointer-events: none;
 }
 
 rect.bus {
@@ -151,49 +151,49 @@ rect.bus {
     transition: fill .3s ease-in-out;
 }
 
-rect.bus.held{
-  fill: white;
-  transition: fill .3s ease-in-out;
+rect.bus.held {
+    fill: white;
+    transition: fill .3s ease-in-out;
 }
 
-path.target_road{
-  stroke:@clr-grey-600;
+path.target_road {
+    stroke: @clr-grey-600;
 }
 
-
-circle.stop{
+circle.stop {
     fill: white;
     filter: url(#f1);
 }
 
-circle.pax{
+circle.pax {
     stroke: none;
 }
 
-.axis path, .axis line {
+.axis path,
+.axis line {
     fill: none;
     stroke: @clr-grey-200;
     shape-rendering: crispEdges;
 }
 
-
-.axis g.tick text{
-  font-size: 10px;
-  // font-family: 
-  font-weight: 300;
+.axis g.tick text {
+    font-size: 10px;
+    // font-family: 
+    font-weight: 300;
 }
 
- text.axis-label{
-  font-size: 12px;
-  font-weight: 300;
+text.axis-label {
+    font-size: 12px;
+    font-weight: 300;
 }
 
-text.axis-label.time{
-  text-anchor: end;
+text.axis-label.time {
+    text-anchor: end;
 }
-text.axis-label.count{
-  font-size: 15px;
-  text-anchor: middle;
+
+text.axis-label.count {
+    font-size: 15px;
+    text-anchor: middle;
 }
 
 .axis g.tick line {
@@ -201,16 +201,16 @@ text.axis-label.count{
     stroke-dasharray: 1, 1.5;
 }
 
-.x-zero{
-  stroke-width: 1px;
-  stroke: @clr-grey-500;
+.x-zero {
+    stroke-width: 1px;
+    stroke: @clr-grey-500;
 }
 
-rect.background{
+rect.background {
     fill: none;
 }
 
-.axis g.tick:first-child line{
+.axis g.tick:first-child line {
     stroke-dasharray: none;
     stroke: @clr-grey-300;
     stroke-width: 1.3px;
@@ -220,34 +220,34 @@ rect.background{
     display: none;
 }
 
-path.cumulative-line{
-  fill: none;
-  stroke: @clr-pink-500;
-  stroke-width: 1px;
+path.cumulative-line {
+    fill: none;
+    stroke: @clr-pink-500;
+    stroke-width: 1px;
 }
 
-path.cumulative-area{
-  stroke: none;
+path.cumulative-area {
+    stroke: none;
 }
 
-div.row{
-  border-bottom: solid @clr-grey-300 1px;
-  padding: 20px;
-  cursor: pointer;
-  // pointer: cursor;
+div.row {
+    border-bottom: solid @clr-grey-300 1px;
+    padding: 20px;
+    cursor: pointer;
+    // pointer: cursor;
 }
 
-div.row .icon-bus{
-  font-size: 18px;
+div.row .icon-bus {
+    font-size: 18px;
 }
 
-
-div.row.hilited{
-  // border: solid @clr-grey-300 2px;
-  // transition: all .3s ease-in-out;
-  background-color: @clr-grey-100;
+div.row.hilited {
+    // border: solid @clr-grey-300 2px;
+    // transition: all .3s ease-in-out;
+    background-color: @clr-grey-100;
 }
+
 div.row.held {
-  background-color: @clr-grey-200;
-  transition: all .2s ease-in-out;
+    background-color: @clr-grey-200;
+    transition: all .2s ease-in-out;
 }

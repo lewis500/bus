@@ -2,8 +2,8 @@ require '../helpers'
 
 class World
 	constructor: ()->
-		@max_capacity= 20
-		@max_history = 20
+		@max_capacity= 18
+		@max_history = 35
 		@road_length= 100
 		@num_buses= 2
 		@num_stops= 4
@@ -14,6 +14,7 @@ class World
 		@board_time = 180
 		@alight_time = 130
 		@add_time= 1200
+		@paused = false
 	increment: (dt)->
 		@time += dt
 

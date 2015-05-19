@@ -2,7 +2,7 @@ World = require '../services/world'
 timeout = require( '../helpers').timeout
 _ = require 'lodash'
 class BusStop
-	constructor: (@n, @location,@flipped)->
+	constructor: (@n, @location, @flipped)->
 		@alighting_paxes = []
 		@boarding_paxes = []
 		@next_stop = undefined
@@ -12,29 +12,34 @@ class BusStop
 						count: @boarding_paxes.length
 						time: World.time
 					if (World.time - @history[0].time) > (World.max_history*1000 )then @history.shift()
-				, 80
+				, 200
 
 	set_next: (stop)->
 		@next_stop = stop
 
-
 	task: (bus)->
+		if World.paused
+			timeout =>
+					@task(bus)
+				, 25
+			return
+
 		if @alighting_paxes.length > 0
-			timeout(=>
-				alighter = @alighting_paxes.pop()
-				if alighter
-					alighter.alight()
-					bus.remove_pax(alighter)
-				@task(bus)
-			, World.alight_time)
+			timeout =>
+					alighter = @alighting_paxes.pop()
+					if alighter
+						alighter.alight()
+						bus.remove_pax(alighter)
+					@task(bus)
+				, World.alight_time
 		else if ((@boarding_paxes.length > 0) and (bus.queue.length < World.max_capacity))
-			timeout(=>
-				boarder = @boarding_paxes.shift()
-				if boarder
-					boarder.board()
-					bus.add_pax(boarder)
-				@task(bus)
-			, World.board_time)
+			timeout =>
+					boarder = @boarding_paxes.shift()
+					if boarder
+						boarder.board()
+						bus.add_pax(boarder)
+					@task(bus)
+				, World.board_time
 		else
 			timeout ()=>
 					bus.set_next_stop(@next_stop)

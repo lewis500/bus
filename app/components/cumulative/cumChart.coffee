@@ -45,10 +45,6 @@ class cumCtrl
 			.classed 'stop-' + @stop.n , true
 			.datum @stop.history
 
-		@cumLine = sel
-			.select 'path.cumulative-line'
-			.datum @stop.history
-
 		@scope.$watch => 
 						@stop.history.slice(-1)[0]?.time
 					, @update
@@ -57,11 +53,6 @@ class cumCtrl
 			.interpolate 'monotone'
 			.y1 (d)=> @Y d.count
 			.y0 (d)=> @Y 0
-			.x (d)=> @X(World.max_history - (World.time - d.time)/1000)
-
-		@lineFun = d3.svg.line()
-			.interpolate 'monotone'
-			.y (d)=> @Y d.count
 			.x (d)=> @X(World.max_history - (World.time - d.time)/1000)
 
 		angular.element(window).on('resize', @resize)
@@ -81,14 +72,12 @@ class cumCtrl
 
 		@cumArea
 			.attr 'd' , @areaFun
-			.attr 'transform', null
+			# .attr 'transform', null
 			.transition()
+			.duration 200
+			.ease 'linear'
 			.attr 'transform', "translate(#{@X(-1)},0)"	
 
-		@cumLine.attr 'd' , @lineFun
-			.attr 'transform', null
-			.transition()
-			.attr 'transform', "translate(#{@X(-1)},0)"	
 
 der = ()->
 	directive = 
