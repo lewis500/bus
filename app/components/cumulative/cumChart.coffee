@@ -3,7 +3,7 @@ World = require '../../services/world'
 d3 = require 'd3'
 
 template = '''
-	<div class='cum-chart' ng-init='vm.resize()'>
+	<div class='cum-chart'>
 		<svg ng-attr-height='{{vm.height + vm.mar.top + vm.mar.bottom}}'>
 			<defs>
 				<clippath id='{{::vm.ID}}'>
@@ -56,17 +56,11 @@ class cumCtrl
 			.y0 (d)=> @Y 0
 			.x (d)=> @X(World.max_history - (World.time - d.time)/1000)
 
-		angular.element window 
-			.on 'resize', ()=> 
-				@resize()
-		
-
-	resize: ()->
 		@width = @el.clientWidth - @mar.left - @mar.right
 		@height = @el.clientHeight - @mar.top - @mar.bottom
 		@Y.range([@height, 0])
 		@X.range([0, @width])
-		@scope.$evalAsync()
+
 
 	update:(v) ->
 		max = d3.max @stop.history, (d)-> 
