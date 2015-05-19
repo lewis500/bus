@@ -7,7 +7,7 @@ _ = require 'lodash'
 class MapCtrl
 	constructor: (@scope, @element, @window) ->
 		sel =  d3.select @element[0]
-		@road = sel.select 'path.target_road'
+		@road = sel.select 'path#road'
 			.node()
 
 		@aspectRatio = sel.node().clientHeight/sel.node().clientWidth
@@ -46,7 +46,7 @@ class MapCtrl
 
 der = ()->
 	directive = 
-		templateUrl: './styles/picture.svg'
+		templateUrl: './styles/picture3-01.svg'
 		controller: ['$scope','$element','$window', MapCtrl]
 		restrict: 'A'
 		bindToController: true

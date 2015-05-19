@@ -9,7 +9,6 @@ body {
 p{
     font-size: 14px;
     font-weight: 300;
-    letter-spacing: 0.01em;
     line-height: 20px;
 }
 
@@ -30,7 +29,7 @@ a{
 }
 
 div[cum-chart].show {
-    opacity: 1;
+    opacity: .93;
     transition: opacity ease-in-out .125s;
 }
 
@@ -97,7 +96,7 @@ h4 {
 }
 
 #left #top {
-    padding: 25px 25px 15px 25px;
+    padding: 25px 30px 15px 30px;
     color: @clr-grey-100;
     background-color: @clr-indigo-500;
 }
@@ -156,9 +155,9 @@ rect.bus.held {
     transition: fill .3s ease-in-out;
 }
 
-path.target_road {
-    stroke: @clr-grey-600;
-}
+// path.target_road {
+//     stroke: @clr-grey-600;
+// }
 
 circle.stop {
     fill: white;

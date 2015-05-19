@@ -47,7 +47,8 @@ class cumCtrl
 
 		@scope.$watch => 
 						@stop.history.slice(-1)[0]?.time
-					, @update
+				, (v)=> 
+					@update(v)
 
 		@areaFun = d3.svg.area()
 			.interpolate 'monotone'
@@ -58,25 +59,25 @@ class cumCtrl
 		angular.element(window).on('resize', @resize)
 		
 
-	resize: ()=>
+	resize: ()->
 		@width = @el.clientWidth - @mar.left - @mar.right
 		@height = @el.clientHeight - @mar.top - @mar.bottom
 		@Y.range([@height, 0])
 		@X.range([0, @width])
 		@scope.$evalAsync()
 
-	update: =>
+	update:(v) ->
 		max = d3.max @stop.history, (d)-> 
 			d.count
 		@Y.domain [0, Math.max((max ? 0), 8) ]
-
+		q = World.time - v || 100
 		@cumArea
 			.attr 'd' , @areaFun
-			# .attr 'transform', null
-			.transition()
-			.duration 200
+			.attr 'transform', null
+			.transition 'slide'
+			.duration q
 			.ease 'linear'
-			.attr 'transform', "translate(#{@X(-1)},0)"	
+			.attr 'transform', "translate(#{@X(-(q/1000))},0)"	
 
 
 der = ()->
