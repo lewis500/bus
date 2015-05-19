@@ -11,7 +11,8 @@ class Data
 
 	reset:->
 		# create stops
-		SL = [[4, false], [29,true], [56, true], [79,false]]
+		# SL = [[4, false], [29,true], [56, true], [79,false]]
+		SL = [[5, false], [30,true], [55, true], [80,false]]
 
 		@stops = [1..World.num_stops].map (n)->
 			p = SL[n-1]
