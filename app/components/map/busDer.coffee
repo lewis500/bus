@@ -22,26 +22,45 @@ der = ()->
 		link: (scope, el, attr, vm)->
 			sel = d3. select el[0]
 			rect = sel.select '.bus'
+				.attr 'fill' , 'black'
 
 			scope.$watch 'vm.data.hilited', (v)->
 				if v
 					rect.transition()
-						.duration 400
+						.duration 345
 						.ease 'bounce-in'
-						.attr 'stroke-width', 4
+						.attr 'stroke-width', 5.5
 						.transition('something')
-						.duration 200
-						.ease 'cubic-in'
+						.duration 130
+						.ease 'cubic'
 						.attr 'stroke-width', 2
+
 				else 
 					rect.transition()
 						.duration 175
 						.ease 'cubic'
-						.attr
-							'stroke-width': 0
+						.attr 'stroke-width', 0
 
 			scope.$watch 'vm.data.held', (v)->
-					rect.classed 'held' , v
+				if v
+					rect.transition 'grow'
+						.duration 200
+						.ease 'bounce-in'
+						.attr 'transform', 'scale(1.1)'
+						.transition()
+						.ease 'cubic'
+						.duration 100
+						.attr 'transform', 'scale(1)'
+
+					rect.transition 'color'
+						.duration 200
+						.ease 'cubic-in'
+						.attr 'fill', 'white'
+				else 
+					rect.transition 'hold'
+						.duration 175
+						.ease 'cubic'
+						.attr 'fill', 'black'
 
 			g = d3.select(el[0]).select('g.g-pax')
 

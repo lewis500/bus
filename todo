@@ -1,24 +1,21 @@
 SHORT TERM
+add a color bounce to the white when the bus gets stopped
 add a reset button
-make the tooltip sensitive to the location
+add a margin to the svg
+have the stops light up when a bus is docked there
+insert the new bus icon
+style the play button for hover over, etc.
+instead of doing the styling for the rows like you are, instead use css hover and active effects
+make the max of the y like 1.2 * max
 
+
+make an explainer that comes out over the chart
 
 
 MED TERM
 make the stop get hilited when it's boarding passengers
-style the play button for hoever, etc.
-add margins around the buses
 
 LONG TERM
-reset button
 redo the shifter directive
-make a thing to long out the positions
-improve performance
 bring in the svg filters with an ng-include
 
-IAN'S NOTES
-selector gorup around bus
-longer delay
-simulation speed isn't important
-don't slow down on mouseover, pause
-add more time to the plots

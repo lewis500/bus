@@ -1,5 +1,6 @@
 @import "../bower_components/material-color/material-color";
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300);
+@import url(glyphter-font/css/Glyphter.css);
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -10,6 +11,10 @@ p{
     font-size: 14px;
     font-weight: 300;
     line-height: 20px;
+}
+
+g[stop-der]{
+    cursor: pointer;
 }
 
 div[cum-chart] {
@@ -115,7 +120,7 @@ h4 {
 
 text.bus-icon {
     font-family: 'Glyphter';
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-anchor: middle;
     dominant-baseline: central;
 }
@@ -130,7 +135,8 @@ text.bus-icon {
 }
 
 .stop-3 {
-    fill: #4f8742;
+    // fill: #4f8742;
+    fill: @clr-light-green-500;
 }
 
 .stop-4 {
@@ -144,20 +150,25 @@ path {
 
 rect.bus {
     stroke: @clr-grey-100;
-    fill: black;
+    // fill: black;
     stroke-linejoin: round;
     stroke-linecap: round;
     transition: fill .3s ease-in-out;
 }
 
-rect.bus.held {
-    fill: white;
-    transition: fill .3s ease-in-out;
-}
+// rect.bus.held {
+//     fill: white;
+//     transition: fill .3s ease-in-out;
+// }
 
 // path.target_road {
 //     stroke: @clr-grey-600;
 // }
+
+path#road{
+    stroke: @clr-grey-600;
+    // stroke-width: 25px;
+}
 
 circle.stop {
     fill: white;
@@ -240,13 +251,13 @@ div.row .icon-bus {
     font-size: 18px;
 }
 
-div.row.hilited {
+div.row:hover {
     // border: solid @clr-grey-300 2px;
     // transition: all .3s ease-in-out;
     background-color: @clr-grey-100;
 }
 
-div.row.held {
-    background-color: @clr-grey-200;
+div.row:active {
+    background-color: @clr-grey-300;
     transition: all .2s ease-in-out;
 }

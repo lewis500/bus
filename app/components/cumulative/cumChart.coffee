@@ -31,7 +31,7 @@ class cumCtrl
 		@mar = 
 			left: 14
 			top: 16
-			right: 5
+			right: 9
 			bottom: 14
 
 		sel = d3.select @element[0]

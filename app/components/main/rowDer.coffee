@@ -1,9 +1,11 @@
 'use strict'
 template = '''
-	<div layout='row' flex class='row' ng-mousedown='vm.bus.hold(true)' ng-mouseup='vm.bus.hold(false)' ng-mouseover='vm.bus.hilite(true)' ng-mouseleave='vm.leave()' ng-class='{"hilited": vm.bus.hilited, "held": vm.bus.held}'>
-		<div class='icon-bus' flex='25'></div>
-		<span flex='45'>Bus {{vm.bus.n + 1| number: 0}}</span>
-		<span flex='30' > # pax: {{vm.bus.queue.length | number:0}}</span>
+	<div layout='row' flex class='row' ng-mousedown='vm.bus.hold(true)' ng-mouseup='vm.bus.hold(false)' ng-mouseover='vm.bus.hilite(true)' ng-mouseleave='vm.leave()' layout-align='start center'>
+		<div  flex='20'>
+			<image src='./styles/busicon-01.svg' />
+		</div>
+		<span flex='30' offset='5'>Bus {{vm.bus.n + 1| number: 0}}</span>
+		<span flex> # pax: {{vm.bus.queue.length | number:0}}</span>
 	</div>
 '''
 
