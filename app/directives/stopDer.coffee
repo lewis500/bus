@@ -8,39 +8,42 @@ template = '''
 
 class stopDerCtrl
 	constructor: (@scope, @element)->
-			@queue = @data.boarding_paxes
-
+			@queue = @stop.boarding_paxes
+			@loc = {}
 			d3.select @element[0]
 				.on 'mouseover' , =>
-					@data.show = true
+					@stop.show = true
 					@scope.$evalAsync()
 				.on 'mouseleave', =>
-					@data.show = false
+					@stop.show = false
 					@scope.$evalAsync()
 
 			@scope.$watch ()=>
 					@element[0].getBoundingClientRect().left
 				, (newVal)=>
-					@data.loc = @element[0].getBoundingClientRect()
+					@stop.loc = @element[0].getBoundingClientRect()
 			
 link = (scope, el, attr, vm)->
 			sel = d3.select el[0]
-				.attr 'class', 'stop-'+vm.data.n
+				.attr 'class', 'stop-'+vm.stop.n
 
 			g = sel.select 'g.g-pax'
 
 			bigCirc = d3.select el[0]
 				.select 'circle.stop'
+				.attr 'fill' , '#F7F7F7'
 
-			scope.$watch 'vm.data.busy', (v)=>
+			scope.$watch 'vm.stop.busy', (v)=>
 				if v
 					bigCirc.transition()
 						.duration 180
 						.ease 'cubic'
 						.attr 'r',25.5
+						.attr 'fill' , 'white'
 						.transition()
 						.duration 130
 						.attr 'r', 24
+
 				else 
 					bigCirc.transition()
 						.duration 200
@@ -50,6 +53,8 @@ link = (scope, el, attr, vm)->
 						.duration 125
 						.ease 'cubic-out'
 						.attr 'r',22
+						.attr 'fill' , '#F7F7F7'
+
 
 			update = (newVal, oldVal)->
 				circles = g.selectAll 'circle.pax'
@@ -77,10 +82,10 @@ link = (scope, el, attr, vm)->
 					.attr
 						r: 0
 						cy: 15
-						transform: (d,i)->
+						transform: (pax,i)->
 							angle = (vm.queue.length-1) / Math.max(norm_len, vm.queue.length) * 360 
 							"rotate( #{ angle } )"
-						class: (d,i)->"pax stop-#{d.destination.n}"
+						class: (pax,i)->"pax stop-#{pax.destination.n}"
 					.transition 'grow'
 					.ease 'cubic-out'
 					.delay ((vm.queue.length+1)**1.2)*20 
@@ -111,7 +116,7 @@ der = ()->
 		templateNamespace: 'svg'
 		bindToController: true
 		scope: 
-			data: '=stopDer'
+			stop: '=stopDer'
 		controller: ['$scope', '$element', stopDerCtrl]
 		link: link
 

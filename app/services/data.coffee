@@ -6,14 +6,13 @@ _ = require 'lodash'
 
 class Data
 	constructor: ()->
-
 		@reset()
 
 	reset:->
+		World.time = 0
+		
 		# create stops
-		# SL = [[4, false], [29,true], [56, true], [79,false]]
 		SL = [[5, false], [30,true], [55, true], [80,false]]
-
 		@stops = [1..World.num_stops].map (n)->
 			p = SL[n-1]
 			newStop = new BusStop n, p[0], p[1] 
@@ -30,8 +29,6 @@ class Data
 
 		@buses.forEach (bus,i,k)->
 			bus.set_next_bus if k[i+1] then k[i+1] else k[0]
-
-		@paxes = []
 
 	choose_destination: (stop)->
 		_.sample(_.without(@stops, stop), 1)[0]

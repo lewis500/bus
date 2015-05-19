@@ -10,8 +10,13 @@ class ButtonCtrl
 		@pause()
 		@adding = false
 		@World = World
-		@buses = Data.buses
-		@stops = Data.stops
+		@Data = Data
+
+	reset: ->
+		World.pause()
+		Data.reset()
+		d3.timer.flush()
+		# @scope.$evalAsync()
 
 	add_pax: ->
 		@adding = true
@@ -23,7 +28,7 @@ class ButtonCtrl
 	play: ->
 		@pause()
 		d3.timer.flush()
-		World.paused = false
+		World.play()
 		if not @adding then @add_pax()
 		last = 0
 		d3.timer (elapsed)=> 
@@ -34,7 +39,7 @@ class ButtonCtrl
 			World.paused
 
 	pause: -> 
-		World.paused = true
+		World.pause()
 
 der = ()->
 	directive =

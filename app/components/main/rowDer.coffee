@@ -4,8 +4,8 @@ template = '''
 		<div  flex='20'>
 			<image src='./styles/busicon-01.svg' />
 		</div>
-		<span flex='30' offset='5'>Bus {{vm.bus.n + 1| number: 0}}</span>
-		<span flex> # pax: {{vm.bus.queue.length | number:0}}</span>
+		<span flex='30' offset='5'>bus {{vm.bus.n + 1| number: 0}}</span>
+		<span flex> {{vm.bus.queue.length | number:0}} passengers</span>
 	</div>
 '''
 

@@ -9,21 +9,7 @@ class MapCtrl
 		sel =  d3.select @element[0]
 		@road = sel.select 'path#road'
 			.node()
-
-		@aspectRatio = sel.node().clientHeight/sel.node().clientWidth
-
-		@buses = Data.buses
-		@stops = Data.stops
-
-		@aspectRatio = 760.76667/747.0819
-
-		angular.element @window 
-			.on 'resize' , ()=> @resize()
-
-	resize: ()->
-		@width = @element[0].clientWidth
-		@height = @width * @aspectRatio
-		@scope.$evalAsync()
+		@Data = Data
 
 	place_bus: (d)->
 		percent = d.location / World.road_length

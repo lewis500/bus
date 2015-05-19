@@ -66,7 +66,7 @@
 		</g>
 	</g>
 	<g class='g-buses'>
-	    <g ng-repeat='bus in vm.buses' ng-attr-transform='{{vm.place_bus(bus)}}' bus-der data=bus></g>
+	    <g ng-repeat='bus in vm.Data.buses' ng-attr-transform='{{vm.place_bus(bus)}}' bus-der data=bus></g>
 	</g>
 	<g id="building">
 		<defs>
@@ -142,7 +142,7 @@
 	</g>
 	<path fill="none" stroke="#4D4D4D" stroke-width="2" stroke-miterlimit="10" stroke-dasharray="6,10" d="M225.7,624.3"/>
 	<g class='g-stops'>
-	    <g ng-repeat='stop in vm.stops' ng-attr-transform='{{vm.place_stop(stop)}}' stop-der=stop>
+	    <g ng-repeat='stop in vm.Data.stops' ng-attr-transform='{{vm.place_stop(stop)}}' stop-der=stop>
 	    </g>
 	</g>
 	<g id="stop-group">

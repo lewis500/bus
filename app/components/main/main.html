@@ -1,15 +1,14 @@
 <div id='top'>
     <h1 style='margin-top: 5px; margin-bottom: 15px;'>Why do buses bunch up?</h1>
-    <p>Bus bunching happens because, if a bus gets delayed, there are more people than anticipated waiting at the next stop. And the extra time the extra people take to board delays the bus even more. A vicious cycle.</p>
-    <p>Click play to start the simulation. To delay a bus, hold its bar below. Even a short delay causes bunching.</p>
+    <p>Bus bunching happens because, if a bus gets delayed, more people than anticipated will be waiting at the next stop. The extra time they take to board will delay the bus even more, and so on.</p>
+    <p>Click play to start the sim. To delay a bus, hold its bar below. Even a short delay causes bunching.</p>
     <p>Hover over a stop to see its history. The area of the curve is cumulative wait time. Bunching makes the area grow.</p>
-    <div layout='row' layout-align='start center'>
-        <div flex='25'>
-            <div class='button' ng-click='vm.World.paused ? vm.play() : vm.pause()'>{{vm.World.paused ? 'Play' : 'Pause'}}</div>
-        </div>
+    <div layout='row' layout-align='space-between center' layout-margin='5'>
+        <div flex class='button' ng-click='vm.World.paused ? vm.play() : vm.pause()'>{{vm.World.paused ? 'Play' : 'Pause'}}</div>
+        <div flex class='button' ng-click='vm.reset()'>Reset</div>
     </div>
 </div>
 <div layout='column' id='bottom'>
-    <row-der ng-repeat='bus in vm.buses' bus=bus />
+    <row-der ng-repeat='bus in vm.Data.buses' bus=bus />
 </div>
-<div cum-chart ng-repeat='lew in vm.stops' stop=lew ng-style='{left: lew.loc.left + 30, top: lew.loc.top- 50}' ng-class='{show: lew.show}'></div>
+<div cum-chart ng-repeat='lew in vm.Data.stops' stop=lew ng-style='{left: lew.loc.left + 30, top: lew.loc.top- 50}' ng-class='{show: lew.show}'></div>

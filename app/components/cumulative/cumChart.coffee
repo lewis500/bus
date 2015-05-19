@@ -56,7 +56,9 @@ class cumCtrl
 			.y0 (d)=> @Y 0
 			.x (d)=> @X(World.max_history - (World.time - d.time)/1000)
 
-		angular.element(window).on('resize', @resize)
+		angular.element window 
+			.on 'resize', ()=> 
+				@resize()
 		
 
 	resize: ()->
@@ -69,7 +71,7 @@ class cumCtrl
 	update:(v) ->
 		max = d3.max @stop.history, (d)-> 
 			d.count
-		@Y.domain [0, Math.max((max ? 0), 8) ]
+		@Y.domain [0, Math.max((max ? 0)*1.2, 6) ]
 		q = World.time - v || 100
 		@cumArea
 			.attr 'd' , @areaFun

@@ -17,6 +17,10 @@ class World
 		@paused = false
 	increment: (dt)->
 		@time += dt
+	pause: ()-> 
+		@paused = true
+	play: ()->
+		@paused = false
 
 
 module.exports = new World 

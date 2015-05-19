@@ -74,6 +74,16 @@ cum-chart svg {
     background-image: none;
     border: 1px solid white;
     border-radius: 16px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.button:hover{
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
+    // transform: translate3d(0, 0, 10px);
+}
+
+.button:active{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
 }
 
 h1,
@@ -101,7 +111,7 @@ h4 {
 }
 
 #left #top {
-    padding: 25px 30px 15px 30px;
+    padding: 25px 30px 5px 30px;
     color: @clr-grey-100;
     background-color: @clr-indigo-500;
 }
@@ -161,11 +171,13 @@ path#road{
 }
 
 circle.stop {
-    fill: white;
+    // fill: white;
     filter: url(#f1);
 }
 
 circle.pax {
+    stroke: none;
+    shape-rendering: crispEdges;
     stroke: none;
 }
 

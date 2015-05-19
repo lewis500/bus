@@ -1,19 +1,10 @@
 SHORT TERM
 add a reset button
 add a margin to the svg
-have the stops light up when a bus is docked there
-insert the new bus icon
-style the play button for hover over, etc.
-instead of doing the styling for the rows like you are, instead use css hover and active effects
-make the max of the y like 1.2 * max
 
 change 'data' in the busstop to bus
 change lew to aBus
 make an explainer that comes out over the chart
-
-
-MED TERM
-make the stop get hilited when it's boarding passengers
 
 LONG TERM
 redo the shifter directive
