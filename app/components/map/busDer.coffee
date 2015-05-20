@@ -2,9 +2,11 @@ _ = require 'lodash'
 World = require '../../services/world'
 
 template = '''
-	<g transform='translate(-32,0)'>
-		<rect class='bus' rx='2' ry='2' width='34px' height='14px' y='-7'></rect>
-		<g class='g-pax' transform='translate(-2,-2.3)'></g>
+	<g class='g-bus' transform='translate(-15, 0)'>
+		<g class='g-grow'>
+			<rect class='bus' rx='2' ry='2' width='34px' height='14px' y='-7' x='-17px'></rect>
+			<g class='g-pax' transform='translate(-19,-2.3)'></g>
+		</g>
 	</g>
 '''
 
@@ -12,19 +14,21 @@ der = ()->
 	directive = 
 		template: template
 		scope: 
-			data: '='
+			bus: '='
 		restrict: 'A'
 		bindToController: true
 		controllerAs: 'vm'
 		templateNamespace: 'svg'
 		controller: ()->
-			@queue = @data.queue
+			@queue = @bus.queue
 		link: (scope, el, attr, vm)->
 			sel = d3. select el[0]
-			rect = sel.select '.bus'
+			gGrow = sel.select '.g-grow'
+			rect = sel.select 'rect.bus'
 				.attr 'fill' , 'black'
+			gPax = sel.select 'g.g-pax'
 
-			scope.$watch 'vm.data.hilited', (v)->
+			scope.$watch 'vm.bus.hilited', (v)->
 				if v
 					rect.transition()
 						.duration 345
@@ -41,7 +45,7 @@ der = ()->
 						.ease 'cubic'
 						.attr 'stroke-width', 0
 
-			scope.$watch 'vm.data.held', (v)->
+			scope.$watch 'vm.bus.held', (v)->
 				if v
 					rect.transition 'grow'
 						.duration 200
@@ -62,7 +66,27 @@ der = ()->
 						.ease 'cubic'
 						.attr 'fill', 'black'
 
-			g = d3.select(el[0]).select('g.g-pax')
+			scope.$watch 'vm.bus.docked' , (v)->
+				if v
+					gGrow.transition 'grow'
+						.duration 200
+						.delay 125
+						.ease 'cubic-out'
+						.attr 'transform', 'scale(1.11)'
+						.transition()
+						.ease 'cubic'
+						.duration 100
+						.attr 'transform', 'scale(1.05)'
+
+					gGrow.transition 'color'
+						.duration 100
+						.ease 'cubic'
+						.attr 'fill', 'white'
+				else 
+					gGrow.transition 'hold'
+						.duration 175
+						.ease 'cubic'
+						.attr 'transform', 'scale(1)'
 
 			places = []
 
@@ -75,8 +99,8 @@ der = ()->
 								filled: false
 
 			update = (newVal, oldVal)->
-				circles = g.selectAll 'circle.pax'
-					.data vm.queue, (d)-> d.id
+				circles = gPax.selectAll 'circle.pax'
+					.data vm.bus.queue, (d)-> d.id
 
 				circles.enter()
 					.append 'circle'

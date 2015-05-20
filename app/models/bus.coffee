@@ -5,9 +5,8 @@ _ = require 'lodash'
 class Bus
 	constructor: (@n, stop)->
 		@queue = []
-		@stopped = false
+		@docked = false
 		@position = stop.location
-		@halts = 0
 		@next_bus = undefined
 		@next_stop = undefined
 		@delay_timeout = undefined
@@ -34,26 +33,18 @@ class Bus
 	hold:(v)->
 		@held = v
 
-	# delay: ->
-	# 	@stopped = true
-	# 	clearInterval(@delay_timeout)
-	# 	@delay_timeout = setTimeout(=> 
-	# 		@stopped = false
-	# 	, World.delay)
+	release:() -> @docked = false
 
-	release:() -> @stopped = false
-
-	halt: ->
-		@halts++
-		@stopped = true
-		@next_stop.halt(this)
+	dock: ->
+		@docked = true
+		@next_stop.dock(this)
 
 	tick: (dt)->
-		if not (@stopped or @held)
+		if not (@docked or @held)
 			gap = @gap
 			move = (dt * World.bus_velocity)
 			if gap <= move
-				@halt()
+				@dock()
 				@position += gap
 			else
 				@position += Math.min(move, @space)

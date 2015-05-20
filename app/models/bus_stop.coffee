@@ -5,7 +5,7 @@ class BusStop
 	constructor: (@n, @location, @flipped)->
 		@alighting_paxes = []
 		@boarding_paxes = []
-		@busy = false
+		@docked = false
 		@next_stop = undefined
 		@history = []
 		@snapshot = _.throttle =>
@@ -41,22 +41,22 @@ class BusStop
 						bus.add_pax(boarder)
 					@task(bus)
 				, World.board_time
-		else if (World.time - @halt_time) < 1000
+		else if (World.time - @dock_time) < 1000
 			timeout ()=>
 					@task(bus)
 				, 5
 		else
 			timeout ()=>
-					@busy = false
+					@docked = false
 					bus.set_next_stop(@next_stop)
 					bus.release()
 				, 5
-				# , Math.max 200 - (World.time - @halt_time) , 0  
+				# , Math.max 200 - (World.time - @dock_time) , 0  
 
-	halt:(bus)->
-		@busy = true
+	dock:(bus)->
+		@docked = true
 		@alighting_paxes = bus.queue.filter (pax)=> pax.destination is this
-		@halt_time = World.time
+		@dock_time = World.time
 		@task(bus)
 
 	receive_pax: (pax)->

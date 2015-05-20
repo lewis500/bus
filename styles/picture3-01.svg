@@ -64,7 +64,7 @@
                 </g>
             </g>
             <g class='g-buses'>
-                <g ng-repeat='bus in vm.Data.buses' ng-attr-transform='{{vm.place_bus(bus)}}' bus-der data=bus></g>
+                <g ng-repeat='bus in vm.Data.buses' ng-attr-transform='{{vm.place_bus(bus)}}' bus-der bus=bus></g>
             </g>
             <g id="building">
                 <defs>

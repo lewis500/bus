@@ -9,9 +9,11 @@
 <script src='dist/bundle.js'></script>
 
 <body ng-app='mainApp'>
-    <div id='content' layout='row' layout-margin='25'>
-        <main-der flex='30' offset='10'></main-der>
-        <map-der flex='50' style='position: relative;'></map-der>
+    <div id='content' layout='column'>
+        <div layout='row' flex>
+            <main-der flex='30'></main-der>
+            <map-der flex='55' offset='5' style='position: relative;'></map-der>
+        </div>
     </div>
     <ng-include src='"./styles/filters.html"'></ng-include>
 </body>

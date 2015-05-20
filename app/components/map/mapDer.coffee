@@ -15,7 +15,7 @@ class MapCtrl
 		percent = d.location / World.road_length
 		road_length = @road.getTotalLength()
 		p0 = @road.getPointAtLength percent*road_length
-		p = @road.getPointAtLength (percent+.005)%1*road_length
+		p = @road.getPointAtLength (percent+.002)%1*road_length
 		angle = 180/Math.PI * Math.atan2 p.y - p0.y, p.x - p0.x 
 		"translate( #{p0.x} , #{p0.y} ) rotate( #{angle} )"
 		

@@ -33,7 +33,7 @@ link = (scope, el, attr, vm)->
 				.select 'circle.stop'
 				.attr 'fill' , '#F7F7F7'
 
-			scope.$watch 'vm.stop.busy', (v)=>
+			scope.$watch 'vm.stop.docked', (v)=>
 				if v
 					bigCirc.transition()
 						.duration 180
