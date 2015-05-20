@@ -1,16 +1,28 @@
 <div id='left'>
     <div id='top'>
-        <h2 style='margin-top: 5px; margin-bottom: 15px;'>Instructions</h2>
-        <!-- <p>The reason is that, if a bus gets delayed, more people than anticipated will be waiting at the next stop. The extra time they take to board will delay the bus even more, and so on.</p> -->
-        <p>Click and hold a bar below to delay its respective bus. Note how even a short delay causes the buses to bunch together after a while.</p>
-        <p>Hover over a stop to see its history. The area of the curve is cumulative wait time. Bunching makes the area grow.</p>
-        <div layout='row' layout-align='space-between center' layout-margin='5'>
-            <div flex class='button' ng-click='vm.World.paused ? vm.play() : vm.pause()'>{{vm.World.paused ? 'Play' : 'Pause'}}</div>
-            <div flex class='button' ng-click='vm.reset()'>Reset</div>
+        <h1 style='padding: 15px; margin: 0px;'>Why do buses bunch together?</h1>
+        <md-tabs md-dynamic-height>
+            <md-tab label="Instructions">
+                <div class="md-padding">
+                    <p>Click and hold a bar below to delay its respective bus. Note how even a short delay causes the buses to bunch together after a while.</p>
+                    <p style='margin-bottom: 0px;'>Hover over a stop to see its history. The area of the curve is cumulative wait time. Bunching makes the area grow.</p>
+                </div>
+            </md-tab>
+            <md-tab label="explanation">
+                <div class="md-padding">
+                    <p style='margin-bottom: 0px;'>Have you ever been waitin for a late bus, and all of a sudden two or three buses arrive at the same time? blah blah blah</p>
+                </div>
+            </md-tab>
+        </md-tabs>
+        <div layout='row' layout-align='space-between center'>
+            <md-button flex class='button' ng-click='vm.World.paused ? vm.play() : vm.pause()'>{{vm.World.paused ? 'Play' : 'Pause'}}</md-button>
+            <md-button flex class='button' ng-click='vm.reset()'>Reset</md-button>
         </div>
     </div>
-    <div layout='column' id='bottom'>
-        <row-der ng-repeat='bus in vm.Data.buses' bus=bus />
+    <div id='bottom'>
+        <md-list id='rows'>
+            <row-der ng-repeat='bus in vm.Data.buses' bus=bus />
+        </md-list>
+        <div cum-chart ng-repeat='stop in vm.Data.stops' stop=stop ng-style='{left: stop.loc.left + 30, top: stop.loc.top- 50}' ng-class='{show: stop.show}'></div>
     </div>
-    <div cum-chart ng-repeat='stop in vm.Data.stops' stop=stop ng-style='{left: stop.loc.left + 30, top: stop.loc.top- 50}' ng-class='{show: stop.show}'></div>
 </div>

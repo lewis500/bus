@@ -13,7 +13,7 @@ yAxis = require './directives/yAxis'
 lineDer = require './directives/line'
 rowDer = require './components/main/rowDer'
 
-app = angular.module('mainApp', [])
+app = angular.module 'mainApp', [require('angular-material')] 
 	.directive 'mainDer', mainDer
 	.directive 'mapDer', mapDer
 	.directive 'shifter', shifter

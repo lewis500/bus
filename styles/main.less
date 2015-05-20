@@ -1,7 +1,7 @@
 @import "../bower_components/material-color/material-color";
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,400,300);
 @import url(glyphter-font/css/Glyphter.css);
-
+@import url(material.css);
 body {
     font-family: 'Roboto', sans-serif;
     background-color: rgb(175, 193, 197)
@@ -54,37 +54,6 @@ cum-chart svg {
     width: 100%;
 }
 
-.button {
-    display: inline-block;
-    color: white;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid rgba(255,255,255,.8);
-    border-radius: 3px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-}
-
-.button:hover{
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.32);
-    // transform: translate3d(0, 0, 10px);
-}
-
-.button:active{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-}
 
 h1,
 h2,
@@ -99,7 +68,7 @@ div[row-der] {
 
 #content {
     margin-top: 20px;
-    margin-left: 5px;
+    margin-left: 15px;
 }
 
 #toolbar {
@@ -109,18 +78,21 @@ div[row-der] {
     background-color: #4EA198;
 }
 
-#left {
-    border-radius: 2.8px;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
-}
-
 #left #top {
-    padding: 25px 35px 12.5px 35px;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    padding: 8px;
     color: @clr-grey-100;
     background-color: @clr-indigo-500;
 }
 
-#left #bottom {
+#top .md-tab{
+    color: white;
+}
+
+#left div#bottom {
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
     color: @clr-grey-700;
     background-color: white;
 }
@@ -131,6 +103,19 @@ text.bus-icon {
     text-anchor: middle;
     dominant-baseline: central;
 }
+
+// .md-tab p{
+//     font-size: 15px;
+// }
+
+.button{
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 6px;
+}
+
+// #left #top .md-tab{
+//     color: white;
+// }
 
 // STOP COLORING
 .stop-1 {
@@ -255,39 +240,47 @@ path.cumulative-area {
     stroke: none;
 }
 
-div.row {
-    border-bottom: solid @clr-grey-300 1px;
-    padding: 20px 25px 20px 25px;
-    cursor: pointer;
-    // pointer: cursor;
+#rows{
+    background-color: white;
 }
 
-div.row .icon-bus {
+row-der {
+    // border-bottom: solid @clr-grey-300 1px;
+    // padding: 20px 25px 20px 25px;
+    cursor: pointer;
+    // background-color: white;
+}
+
+row-der .icon-bus {
     font-size: 18px;
 }
 
-div.row:hover {
+md-list#rows {
+    padding: 0px;
+}
+
+row-der md-list-item:hover {
     // border: solid @clr-grey-300 2px;
     // transition: all .3s ease-in-out;
     background-color: @clr-grey-100;
 }
 
-div.row:active {
+row-der md-list-item:active {
     background-color: @clr-grey-300;
     transition: all .2s ease-in-out;
 }
 
-.md-whiteframe-z1 {
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12); }
+// .md-whiteframe-z1 {
+//   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12); }
 
-.md-whiteframe-z2 {
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }
+// .md-whiteframe-z2 {
+//   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); }
 
-.md-whiteframe-z3 {
-  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12); }
+// .md-whiteframe-z3 {
+//   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12); }
 
-.md-whiteframe-z4 {
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12); }
+// .md-whiteframe-z4 {
+//   box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12); }
 
-.md-whiteframe-z5 {
-  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12); }
+// .md-whiteframe-z5 {
+//   box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12); }
