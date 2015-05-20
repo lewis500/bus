@@ -34,9 +34,10 @@ der = ()->
 	directive = 
 		templateUrl: './styles/picture3-01.svg'
 		controller: ['$scope','$element','$window', MapCtrl]
-		restrict: 'A'
+		# restrict: 'A'
 		bindToController: true
 		controllerAs: 'vm'
+		# replace: true
 		templateNamespace: 'svg'
 		scope: {}
 

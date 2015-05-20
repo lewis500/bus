@@ -53,8 +53,8 @@ der = ()->
 						.attr 'transform', 'scale(1)'
 
 					rect.transition 'color'
-						.duration 200
-						.ease 'cubic-in'
+						.duration 100
+						.ease 'cubic'
 						.attr 'fill', 'white'
 				else 
 					rect.transition 'hold'

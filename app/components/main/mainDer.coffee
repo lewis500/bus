@@ -6,11 +6,12 @@ timeout = require( '../../helpers').timeout
 World = require '../../services/world'
 
 class ButtonCtrl
-	constructor: (@scope)->
-		@pause()
+	constructor: (@scope, @timeout)->
 		@adding = false
 		@World = World
 		@Data = Data
+		@timeout ()=>
+			@play()
 
 	reset: ->
 		World.pause()
@@ -42,7 +43,7 @@ class ButtonCtrl
 
 der = ()->
 	directive =
-		controller: ['$scope', ButtonCtrl]
+		controller: ['$scope', '$timeout',ButtonCtrl]
 		controllerAs: 'vm'
 		templateUrl: './app/components/main/main.html'
 		scope: {}

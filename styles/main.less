@@ -115,21 +115,14 @@ div[row-der] {
 }
 
 #left #top {
-    padding: 25px 30px 5px 30px;
+    padding: 25px 35px 12.5px 35px;
     color: @clr-grey-100;
     background-color: @clr-indigo-500;
 }
 
 #left #bottom {
-    // padding: 20px;
     color: @clr-grey-700;
     background-color: white;
-}
-
-#why p {
-    color: white;
-    margin: 0px;
-    margin-left: 15px;
 }
 
 text.bus-icon {
@@ -141,7 +134,7 @@ text.bus-icon {
 
 // STOP COLORING
 .stop-1 {
-    fill: #fea621;
+    fill: @clr-deep-orange-500;
 }
 
 .stop-2 {
@@ -155,6 +148,14 @@ text.bus-icon {
 
 .stop-4 {
     fill: #fd1a16;
+}
+
+.stop-5{
+    fill: @clr-indigo-500;
+}
+
+.stop-6{
+    fill: @clr-yellow-500;
 }
 
 line,
@@ -171,7 +172,11 @@ rect.bus {
 }
 
 path#road{
-    stroke: @clr-grey-600;
+    stroke: #8E8E8E;
+}
+path#stripe{
+    stroke: #D8D8D8;
+    opacity: .48;
 }
 
 circle.stop {
@@ -194,7 +199,6 @@ circle.pax {
 
 .axis g.tick text {
     font-size: 10px;
-    // font-family: 
     font-weight: 300;
 }
 
@@ -225,6 +229,11 @@ text.axis-label.count {
 rect.background {
     fill: none;
 }
+
+.axis g.tick:nth-last-child(2) {
+    display: none;
+}
+
 
 .axis g.tick:first-child line {
     stroke-dasharray: none;

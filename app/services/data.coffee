@@ -22,16 +22,13 @@ class Data
 			
 		# create buses
 		@buses = [0...World.num_buses].map (n)=> 
-			stop = @stops[ n * Math.floor World.num_stops / World.num_buses]
+			stop = @stops[ n * 2]
 			newBus = new Bus(n, stop)
 			newBus.set_next_stop stop.next_stop
 			newBus
 
 		@buses.forEach (bus,i,k)->
 			bus.set_next_bus if k[i+1] then k[i+1] else k[0]
-
-	choose_destination: (stop)->
-		_.sample(_.without(@stops, stop), 1)[0]
 
 	tick: (dt)->
 		World.increment(dt)

@@ -5,7 +5,7 @@ class World
 		@max_capacity= 18
 		@max_history = 35
 		@road_length= 100
-		@num_buses= 4
+		@num_buses= 2
 		@num_stops= 4
 		@delay = 1000
 		@space= 2.5
@@ -13,7 +13,7 @@ class World
 		@bus_velocity= 27/1000
 		@board_time = 180
 		@alight_time = 120
-		@add_time= 750
+		@add_time= 1200
 		@paused = false
 	increment: (dt)->
 		@time += dt

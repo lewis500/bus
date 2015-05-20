@@ -6,7 +6,7 @@ class Bus
 	constructor: (@n, stop)->
 		@queue = []
 		@stopped = false
-		@position = stop.location + 3
+		@position = stop.location
 		@halts = 0
 		@next_bus = undefined
 		@next_stop = undefined

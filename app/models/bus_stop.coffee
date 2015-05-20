@@ -41,18 +41,22 @@ class BusStop
 						bus.add_pax(boarder)
 					@task(bus)
 				, World.board_time
+		else if (World.time - @halt_time) < 1000
+			timeout ()=>
+					@task(bus)
+				, 5
 		else
 			timeout ()=>
 					@busy = false
 					bus.set_next_stop(@next_stop)
 					bus.release()
-				, 50
+				, 5
 				# , Math.max 200 - (World.time - @halt_time) , 0  
 
 	halt:(bus)->
 		@busy = true
-		@halt_time = World.time
 		@alighting_paxes = bus.queue.filter (pax)=> pax.destination is this
+		@halt_time = World.time
 		@task(bus)
 
 	receive_pax: (pax)->

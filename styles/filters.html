@@ -1,0 +1,14 @@
+  <svg>
+    <defs>
+      <filter id="f1" x="0" y="0" width="300%" height="300%">
+        <feOffset result="offOut" in="SourceAlpha" dx="1" dy=".3"/>
+        <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1.8" />
+        <feColorMatrix in="blurOut" result="color-out" type="matrix"
+             values="0 0 0 0   0
+                     0 0 0 0   0 
+                     0 0 0 0   0 
+                     0 0 0 0.3 0"/>
+        <feBlend in="SourceGraphic" in2="color-out" mode="normal" />
+      </filter>
+    </defs>
+  </svg>

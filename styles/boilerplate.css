@@ -8,11 +8,6 @@
     stroke-width: 1px;
     stroke-dasharray: 2, 2;
     stroke-linecap: round;
-    opacity: .9;
-}
-
-rect.background{
-    fill: #eee;
 }
 
 .axis g.tick:nth-last-child(2) {
