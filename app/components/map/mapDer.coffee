@@ -25,7 +25,7 @@ class MapCtrl
 		p = @road.getPointAtLength percent*road_length
 		p0 = @road.getPointAtLength (percent+.001)%1*road_length
 		angle = -Math.atan2 p.y - p0.y , p.x - p0.x
-		g = [50*Math.sin( angle), 50*Math.cos( angle)]
+		g = [55*Math.sin( angle), 55*Math.cos( angle)]
 		x = if d.flipped then (p.x - g[0]) else (p.x + g[0])
 		y = if d.flipped then (p.y - g[1]) else (p.y + g[1])
 		"translate(#{x},#{y})"

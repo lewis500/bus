@@ -47,9 +47,11 @@ class BusStop
 					bus.set_next_stop(@next_stop)
 					bus.release()
 				, 50
+				# , Math.max 200 - (World.time - @halt_time) , 0  
 
 	halt:(bus)->
 		@busy = true
+		@halt_time = World.time
 		@alighting_paxes = bus.queue.filter (pax)=> pax.destination is this
 		@task(bus)
 

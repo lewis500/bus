@@ -16,7 +16,6 @@ class ButtonCtrl
 		World.pause()
 		Data.reset()
 		d3.timer.flush()
-		# @scope.$evalAsync()
 
 	add_pax: ->
 		@adding = true

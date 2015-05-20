@@ -63,7 +63,7 @@ link = (scope, el, attr, vm)->
 				circ = 84
 				norm_len = 16
 				space = circ/norm_len
-				pax_rad = Math.min(space, 80/vm.queue.length)*.8/2
+				pax_rad = Math.min(space, 80/vm.queue.length)*.86/2
 
 				circles
 					.transition 'place'
