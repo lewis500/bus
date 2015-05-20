@@ -27,9 +27,9 @@
         }
     }(document, 'script', 'twitter-wjs');
     </script>
-    <div id='content' layout='column'>
+    <div id='content' layout='column' >
         <div layout='row' flex>
-            <main-der flex='30'></main-der>
+            <div main-der flex='30'></div>
             <map-der flex='55' offset='5' style='position: relative;'></map-der>
         </div>
     </div>
@@ -39,7 +39,23 @@
             <br> Tools: <a href='http://d3js.org/'>d3</a>, <a href="https://material.angularjs.org/#/">Angular Material</a>, <a href="http://coffeescript.org/">Coffeescript</a>, <a href="http://browserify.org/">Browserify</a>, <a href="http://gulpjs.com/">Gulp</a> and <a href='http://5hourenergy.com/'>Five-Hour Energy Drink</a>.
         </p>
     </div>
+    <svg>
+      <defs>
+        <filter id="f1" x="0" y="0" width="300%" height="300%">
+          <feOffset result="offOut" in="SourceAlpha" dx="1" dy=".3"/>
+          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1.8" />
+          <feColorMatrix in="blurOut" result="color-out" type="matrix"
+               values="0 0 0 0   0
+                       0 0 0 0   0 
+                       0 0 0 0   0 
+                       0 0 0 0.3 0"/>
+          <feBlend in="SourceGraphic" in2="color-out" mode="normal" />
+        </filter>
+      </defs>
+    </svg>
 </body>
-<ng-include src='"./styles/filters.html"' style='height: 0px;'></ng-include>
+<!-- <ng-include src='"./styles/filters.html"' style='height: 0px;'></ng-include> -->
+
+
 
 </html>

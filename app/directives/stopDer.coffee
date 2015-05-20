@@ -19,7 +19,8 @@ class stopDerCtrl
 					@scope.$evalAsync()
 
 			@scope.$watch ()=>
-					@element[0].getBoundingClientRect().left
+					a= @element[0].getBoundingClientRect()
+					a.left + a.top
 				, (newVal)=>
 					@stop.loc = @element[0].getBoundingClientRect()
 			

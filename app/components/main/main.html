@@ -27,6 +27,6 @@
             <md-divider></md-divider>
             <row-der bus='vm.Data.buses[1]'></row-der>
         </md-list>
-        <div cum-chart ng-repeat='stop in vm.Data.stops' stop=stop ng-style='{left: stop.loc.left + 30, top: stop.loc.top- 50}' ng-class='{show: stop.show}'></div>
+        <div cum-chart ng-repeat='stop in vm.Data.stops' stop=stop ng-style='{left: (stop.loc.left + 30 + "px"), top: (stop.loc.top- 50 + "px")}' ng-class='{show: stop.show}'></div>
     </div>
 </div>
