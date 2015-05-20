@@ -5,7 +5,6 @@
     <!-- <link rel="stylesheet" href="styles/flex.css"> -->
     <link rel="stylesheet/less" type="text/css" href="styles/main.less" />
     <script src='./dist/less.min.js'></script>
-
 </head>
 <script src='dist/bundle.js'></script>
 
@@ -16,7 +15,14 @@
             <map-der flex='55' offset='5' style='position: relative;'></map-der>
         </div>
     </div>
-    <ng-include src='"./styles/filters.html"'></ng-include>
+    <div id='footer' style='margin: 10px'>
+        <p>
+            Created by <a href='twitter.com/lewislehe'>Lewis Lehe</a> of <a href='setosa.io'>Setosa</a> and <a href="http://www.ce.berkeley.edu/programs/trans/">UC Berkeley Transportation Eng</a> with design and art by <a href='twitter.com/dennyshess'>Dennys Hess</a>. Thanks to <a href="https://twitter.com/enjalot">Ian Johnson</a> for good advice.
+            <br>
+            Tools: <a href='http://d3js.org/'>d3</a>, <a href="https://material.angularjs.org/#/">Angular Material</a>, <a href="http://coffeescript.org/">Coffeescript</a>, <a href="http://browserify.org/">Browserify</a>, <a href="http://gulpjs.com/">Gulp</a> and <a href='http://5hourenergy.com/'>Five-Hour Energy Drink</a>.
+        </p>
+    </div>
 </body>
+<ng-include src='"./styles/filters.html"'></ng-include>
 
 </html>
