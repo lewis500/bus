@@ -1,4 +1,5 @@
 <html>
+<title>Bus Bunching Explained Visually</title>
 
 <head>
     <meta name="viewport" content="initial-scale=1" />
@@ -9,6 +10,21 @@
 <script src='dist/bundle.js'></script>
 
 <body ng-app='mainApp'>
+    <div style='position: absolute; right: 10px;'>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://setosa.io/bus/" data-via="LewisLehe">Tweet</a>
+    </div>
+    <script>
+    ! function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            p = /^http:/.test(d.location) ? 'http' : 'https';
+        if (!d.getElementById(id)) {
+            js = d.createElement(s);
+            js.id = id;
+            js.src = p + '://platform.twitter.com/widgets.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }
+    }(document, 'script', 'twitter-wjs');
+    </script>
     <div id='content' layout='column'>
         <div layout='row' flex>
             <main-der flex='30'></main-der>
@@ -18,8 +34,7 @@
     <div id='footer' style='margin: 10px'>
         <p>
             Created by <a href='http://twitter.com/lewislehe'>Lewis Lehe</a> (of <a href='http://setosa.io'>Setosa</a> and <a href="http://www.ce.berkeley.edu/programs/trans/">UC Berkeley Trans. Eng.</a>) with design and art by <a href='http://twitter.com/dennyshess'>Dennys Hess</a>. Thanks to <a href="https://twitter.com/enjalot">Ian Johnson</a> for good advice.
-            <br>
-            Tools: <a href='http://d3js.org/'>d3</a>, <a href="https://material.angularjs.org/#/">Angular Material</a>, <a href="http://coffeescript.org/">Coffeescript</a>, <a href="http://browserify.org/">Browserify</a>, <a href="http://gulpjs.com/">Gulp</a> and <a href='http://5hourenergy.com/'>Five-Hour Energy Drink</a>.
+            <br> Tools: <a href='http://d3js.org/'>d3</a>, <a href="https://material.angularjs.org/#/">Angular Material</a>, <a href="http://coffeescript.org/">Coffeescript</a>, <a href="http://browserify.org/">Browserify</a>, <a href="http://gulpjs.com/">Gulp</a> and <a href='http://5hourenergy.com/'>Five-Hour Energy Drink</a>.
         </p>
     </div>
 </body>
