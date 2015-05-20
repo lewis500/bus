@@ -1,6 +1,6 @@
 <div id='left'>
     <div id='top'>
-        <h1 style='padding: 15px; margin: 0px;'>Why do buses bunch together?</h1>
+        <h1 >Why do buses bunch?</h1>
         <md-tabs md-dynamic-height>
             <md-tab label="Instructions">
                 <div class="md-padding">
@@ -21,7 +21,9 @@
     </div>
     <div id='bottom'>
         <md-list id='rows'>
-            <row-der ng-repeat='bus in vm.Data.buses' bus=bus />
+            <row-der bus='vm.Data.buses[0]'></row-der>
+            <md-divider></md-divider>
+            <row-der bus='vm.Data.buses[1]'></row-der>
         </md-list>
         <div cum-chart ng-repeat='stop in vm.Data.stops' stop=stop ng-style='{left: stop.loc.left + 30, top: stop.loc.top- 50}' ng-class='{show: stop.show}'></div>
     </div>
