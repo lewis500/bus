@@ -4,7 +4,7 @@ World = require '../../services/world'
 template = '''
 	<g class='g-bus' transform='translate(-15, 0)'>
 		<g class='g-grow'>
-			<rect class='bus' rx='2' ry='2' width='34px' height='14px' y='-7' x='-17px'></rect>
+			<rect class='bus' rx='2px' ry='2px' width='34px' height='14px' y='-7px' x='-17px'></rect>
 			<g class='g-pax' transform='translate(-19,-2.3)'></g>
 		</g>
 	</g>

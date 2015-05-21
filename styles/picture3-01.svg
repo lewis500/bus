@@ -7369,3 +7369,5 @@ AAAAAAAAAAAAAAAAAACAC+z/CzAAO2NancKgW/4AAAAASUVORK5CYII=" transform="matrix(0.24
         </g>
     </g>
 </svg>
+<!-- <div cum-chart ng-repeat='stop in vm.Data.stops' stop=stop ng-style='{left: (stop.loc.left + 30 + "px"), top: (stop.loc.top- 50 + "px")}' ng-class='{show: stop.show}'></div> -->
+

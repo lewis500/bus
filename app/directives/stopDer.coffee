@@ -1,7 +1,7 @@
 World = require '../services/world'
 
 template = '''
-	<circle class='stop' r='22' ng-init='vm.resizer()'></circle>
+	<circle class='stop' r='22px'></circle>
 	<text class='bus-icon'>G</text>
 	<g class='g-pax'></g>
 '''
@@ -20,10 +20,13 @@ class stopDerCtrl
 
 			@scope.$watch ()=>
 					a= @element[0].getBoundingClientRect()
-					a.left + a.top
+					res =
+						left: a.left
+						top: a.top + window.scrollY
 				, (newVal)=>
-					@stop.loc = @element[0].getBoundingClientRect()
-			
+					@stop.loc = newVal
+				, true
+
 link = (scope, el, attr, vm)->
 			sel = d3.select el[0]
 				.attr 'class', 'stop-'+vm.stop.n
@@ -39,7 +42,7 @@ link = (scope, el, attr, vm)->
 					bigCirc.transition()
 						.duration 180
 						.ease 'cubic'
-						.attr 'r',25.5
+						.attr 'r',25.5 
 						.attr 'fill' , 'white'
 						.transition()
 						.duration 130
